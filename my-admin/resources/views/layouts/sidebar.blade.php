@@ -1,7 +1,7 @@
         <nav class="pc-sidebar">
   <div class="navbar-wrapper">
     <div class="m-header d-flex align-items-center p-2 bg-light">
-  <a href="../dashboard/index.html" class="d-flex align-items-center text-decoration-none">
+  <a href="{{ route('home') }}" class="d-flex align-items-center text-decoration-none">
     <!-- Logo image -->
     <img src="../assets/images/investment.png" class="img-fluid me-2" style="height:40px;" alt="FinTrack Logo">
     <!-- Brand name -->
@@ -12,7 +12,7 @@
         <div class="navbar-content">
             <ul class="pc-navbar">
                 <li class="pc-item">
-                    <a href="../dashboard/index.html" class="pc-link">
+                    <a href="{{ route('home') }}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-dashboard"></i></span>
                         <span class="pc-mtext">Dashboard</span>
                     </a>
@@ -26,7 +26,7 @@
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
                     <ul class="pc-submenu">
-                        <li class="pc-item"><a class="pc-link" href="#!">Add Income</a></li>
+                        <li class="pc-item"><a class="pc-link" href="{{ route('addMoney') }}">Add Income</a></li>
                         <li class="pc-item pc-hasmenu">
                             <a href="#!" class="pc-link">View Income History<span class="pc-arrow"><i
                                         data-feather="chevron-right"></i></span></a>
