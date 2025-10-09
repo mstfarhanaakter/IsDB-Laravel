@@ -5,7 +5,7 @@
     <!-- Logo image -->
     <img src="../assets/images/investment.png" class="img-fluid me-2" style="height:40px;" alt="FinTrack Logo">
     <!-- Brand name -->
-    <span class="h4 mb-0 text-primary fw-bold">FinTrack</span>
+    <span class="h4 mb-0 text-primary fw-bold">TailorBase</span>
   </a>
 </div>
         
@@ -18,86 +18,90 @@
                     </a>
                 </li>
 
-                <!-- Income Section -->
+                <!-- Master data section -->
                 <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-wallet"></i></span>
-                        <span class="pc-mtext">Income</span>
-                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
-                    </a>
-                    <ul class="pc-submenu">
-                        <li class="pc-item"><a class="pc-link" href="{{ route('addMoney') }}">Add Income</a></li>
-                        <li class="pc-item pc-hasmenu">
-                            <a href="#!" class="pc-link">View Income History<span class="pc-arrow"><i
-                                        data-feather="chevron-right"></i></span></a>
-                            <ul class="pc-submenu">
-                                <li class="pc-item"><a class="pc-link" href="#!">Filter by Month</a></li>
-                                <li class="pc-item"><a class="pc-link" href="#!">Filter by Category</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
+    <a href="#!" class="pc-link">
+        <span class="pc-micon"><i class="ti ti-database"></i></span>
+        <span class="pc-mtext">Master Data</span>
+        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+    </a>
+    <ul class="pc-submenu">
+        <li class="pc-item"><a class="pc-link" href="#!">Products / Styles</a></li>
+        <li class="pc-item"><a class="pc-link" href="#!">Sizes & Colors</a></li>
+        <li class="pc-item"><a class="pc-link" href="#!">Buyers</a></li>
+        <li class="pc-item"><a class="pc-link" href="#!">Suppliers</a></li>
+        <li class="pc-item"><a class="pc-link" href="#!">Departments</a></li>
+        <li class="pc-item"><a class="pc-link" href="#!">Employees</a></li>
+    </ul>
+</li>
+                <!-- Inventory  & Purchase -->
+                <li class="pc-item pc-hasmenu">
+    <a href="#!" class="pc-link">
+        <span class="pc-micon"><i class="ti ti-shopping-cart"></i></span>
+        <span class="pc-mtext">Inventory & Purchase</span>
+        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+    </a>
+    <ul class="pc-submenu">
+        <li class="pc-item"><a class="pc-link" href="#!">Purchase Orders</a></li>
+        <li class="pc-item"><a class="pc-link" href="#!">Goods Receipt Notes (GRN)</a></li>
+        <li class="pc-item"><a class="pc-link" href="#!">Inventory Stock</a></li>
+        <li class="pc-item"><a class="pc-link" href="#!">Stock Adjustments</a></li>
+    </ul>
+</li
 
-                <!-- Expenses Section -->
+                <!--Production -->
                 <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-credit-card"></i></span>
-                        <span class="pc-mtext">Expenses</span>
-                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
-                    </a>
-                    <ul class="pc-submenu">
-                        <li class="pc-item"><a class="pc-link" href="#!">Add Expense</a></li>
-                        <li class="pc-item pc-hasmenu">
-                            <a href="#!" class="pc-link">View Expense History<span class="pc-arrow"><i
-                                        data-feather="chevron-right"></i></span></a>
-                            <ul class="pc-submenu">
-                                <li class="pc-item"><a class="pc-link" href="#!">Filter by Month</a></li>
-                                <li class="pc-item"><a class="pc-link" href="#!">Filter by Category</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
+    <a href="#!" class="pc-link">
+        <span class="pc-micon"><i class="fa-solid fa-industry"></i></i></span>
+        <span class="pc-mtext">Production</span>
+        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+    </a>
+    <ul class="pc-submenu">
+        <li class="pc-item"><a class="pc-link" href="#!">Bill of Materials (BOM)</a></li>
+        <li class="pc-item"><a class="pc-link" href="#!">Production Orders</a></li>
+        <li class="pc-item pc-hasmenu">
+            <a href="#!" class="pc-link">Sections<span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>
+            <ul class="pc-submenu">
+                <li class="pc-item"><a class="pc-link" href="#!">Cutting Section</a></li>
+                <li class="pc-item"><a class="pc-link" href="#!">Sewing Section</a></li>
+                <li class="pc-item"><a class="pc-link" href="#!">Finishing Section</a></li>
+                <li class="pc-item"><a class="pc-link" href="#!">Packing Section</a></li>
+            </ul>
+        </li>
+    </ul>
+</li>
 
-                <!-- Budgets Section -->
+                <!-- Sales and shipment section -->
                 <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-layout-grid"></i></span>
-                        <span class="pc-mtext">Budgets</span>
-                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
-                    </a>
-                    <ul class="pc-submenu">
-                        <li class="pc-item"><a class="pc-link" href="#!">Set Monthly Budgets</a></li>
-                        <li class="pc-item"><a class="pc-link" href="#!">Track Spending vs Budget</a></li>
-                    </ul>
-                </li>
+    <a href="#!" class="pc-link">
+        <span class="pc-micon"><i class="ti ti-truck"></i></span>
+        <span class="pc-mtext">Sales & Shipment</span>
+        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+    </a>
+    <ul class="pc-submenu">
+        <li class="pc-item"><a class="pc-link" href="#!">Sales Orders</a></li>
+        <li class="pc-item"><a class="pc-link" href="#!">Invoices</a></li>
+        <li class="pc-item"><a class="pc-link" href="#!">Shipments</a></li>
+        <li class="pc-item"><a class="pc-link" href="#!">Delivery Reports</a></li>
+    </ul>
+</li>
+
 
                 <!-- Reports Section -->
                 <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-chart-line"></i></span>
-                        <span class="pc-mtext">Reports</span>
-                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
-                    </a>
-                    <ul class="pc-submenu">
-                        <li class="pc-item"><a class="pc-link" href="#!">Monthly / Yearly Reports</a></li>
-                        <li class="pc-item"><a class="pc-link" href="#!">Export PDF / Excel</a></li>
-                    </ul>
-                </li>
-
-                <!-- Savings Goals Section -->
-                <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-target"></i></span>
-                        <span class="pc-mtext">Savings Goals</span>
-                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
-                    </a>
-                    <ul class="pc-submenu">
-                        <li class="pc-item"><a class="pc-link" href="#!">Create and Track Goals</a></li>
-                        <li class="pc-item"><a class="pc-link" href="#!">View Progress</a></li>
-                    </ul>
-                </li>
-
-
+    <a href="#!" class="pc-link">
+        <span class="pc-micon"><i class="ti ti-file-text"></i></span>
+        <span class="pc-mtext">Reports & Analytics</span>
+        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+    </a>
+    <ul class="pc-submenu">
+        <li class="pc-item"><a class="pc-link" href="#!">Stock Report</a></li>
+        <li class="pc-item"><a class="pc-link" href="#!">Production Report</a></li>
+        <li class="pc-item"><a class="pc-link" href="#!">QC Report</a></li>
+        <li class="pc-item"><a class="pc-link" href="#!">Purchase Report</a></li>
+        <li class="pc-item"><a class="pc-link" href="#!">Sales Report</a></li>
+    </ul>
+</li>
 
                 <!-- my work -->
 
