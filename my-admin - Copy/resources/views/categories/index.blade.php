@@ -1,3 +1,7 @@
+@extends ('layouts.app')
+@section('Title', 'Category Index')
+@section('content')
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -12,11 +16,11 @@
   </head>
   <body>
       <div class="text-center">
-        <h1>Category List</h1>
+        <h1>Manage Category</h1>
 
         <br>
         <a href="{{ route('create') }}">
-          <button class="btn btn-md btn-success">Add Category</button>
+          <button class="btn btn-md btn-primary">Add Category</button>
         </a>
 
 
@@ -28,7 +32,7 @@
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
-                <th scope="col">details</th>
+                <th scope="col">Details</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
@@ -45,14 +49,14 @@
                 <td>
                     <div class="btn-group">
                       <a href="{{ route('edit', $single->id) }}">
-                        <button class="btn btn-md btn-success me-1 p-1">edit</button>
+                        <button class="btn btn-md btn-warning me-1 p-2">Edit</button>
                       </a>
 
                     <form action="{{route('delete')}}" method="POST">
                         @method('DELETE')
                         @csrf
                         <input type="text" name="catagory_id" value="{{ $single->id }}" hidden>
-                      <button class="btn btn-md btn-danger  p-1">delete</button>
+                      <button class="btn btn-md btn-danger  p-2">Delete</button>
                 </form>
 
 
@@ -65,10 +69,10 @@
             </tbody>
           </table>
       </div>
-
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </body>
 </html>
+
+@endsection
+
+
