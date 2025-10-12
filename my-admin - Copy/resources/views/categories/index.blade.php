@@ -1,32 +1,18 @@
-@extends ('layouts.app')
-@section('Title', 'Category Index')
+@extends('layouts.app')
+@section('title', 'Category Index')
 @section('content')
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Page Header -->
+<div class="text-center mb-4">
+    <h1>Manage Category</h1>
+    <a href="{{ route('create') }}">
+        <button class="btn btn-md btn-primary">Add Category</button>
+    </a>
+</div>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <title>Laravel CRUD</title>
-  </head>
-  <body>
-      <div class="text-center">
-        <h1>Manage Category</h1>
-
-        <br>
-        <a href="{{ route('create') }}">
-          <button class="btn btn-md btn-primary">Add Category</button>
-        </a>
-
-
-      </div>
-
-      <div class="container">
+<!-- Category Table -->
+<div class="card">
+    <div class="card-body">
         <table class="table table-striped">
             <thead>
               <tr>
@@ -37,42 +23,30 @@
               </tr>
             </thead>
             <tbody>
-
-             @foreach ($cats as $single )
-
+             @foreach ($cats as $single)
               <tr>
                 <th scope="row">{{ $loop->iteration }}</th>
-                <!-- <td>{{ $single->id }}</td> -->
                 <td>{{ $single->name }}</td>
-                <td>{{ $single->details }} </td>
-
+                <td>{{ $single->details }}</td>
                 <td>
                     <div class="btn-group">
-                      <a href="{{ route('edit', $single->id) }}">
-                        <button class="btn btn-md btn-warning me-1 p-2">Edit</button>
-                      </a>
+                        <a href="{{ route('edit', $single->id) }}">
+                            <button class="btn btn-md btn-warning me-1 p-2">Edit</button>
+                        </a>
 
-                    <form action="{{route('delete')}}" method="POST">
-                        @method('DELETE')
-                        @csrf
-                        <input type="text" name="catagory_id" value="{{ $single->id }}" hidden>
-                      <button class="btn btn-md btn-danger  p-2">Delete</button>
-                </form>
-
-
+                        <form action="{{ route('delete') }}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <input type="hidden" name="catagory_id" value="{{ $single->id }}">
+                            <button class="btn btn-md btn-danger p-2">Delete</button>
+                        </form>
                     </div>
                 </td>
               </tr>
-
               @endforeach
-
             </tbody>
-          </table>
-      </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  </body>
-</html>
+        </table>
+    </div>
+</div>
 
 @endsection
-
-

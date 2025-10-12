@@ -42,7 +42,7 @@
         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
     </a>
     <ul class="pc-submenu">
-        <li class="pc-item"><a class="pc-link" href="/categories">Purchase Orders</a></li>
+        <li class="pc-item"><a class="pc-link" href="categories">Purchase Orders</a></li>
         <li class="pc-item"><a class="pc-link" href="#!">Goods Receipt Notes (GRN)</a></li>
         <li class="pc-item"><a class="pc-link" href="#!">Inventory Stock</a></li>
         <li class="pc-item"><a class="pc-link" href="#!">Stock Adjustments</a></li>
