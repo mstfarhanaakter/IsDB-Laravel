@@ -22,30 +22,32 @@
                 <li class="pc-item pc-hasmenu">
     <a href="#!" class="pc-link">
         <span class="pc-micon"><i class="ti ti-database"></i></span>
-        <span class="pc-mtext">Master Data</span>
+        <span class="pc-mtext">Employee Management</span>
         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
     </a>
     <ul class="pc-submenu">
-        <li class="pc-item"><a class="pc-link" href="#!">Products / Styles</a></li>
-        <li class="pc-item"><a class="pc-link" href="#!">Sizes & Colors</a></li>
-        <li class="pc-item"><a class="pc-link" href="#!">Buyers</a></li>
-        <li class="pc-item"><a class="pc-link" href="#!">Suppliers</a></li>
+        <li class="pc-item"><a class="pc-link" href="#!">All Employee</a></li>
+        <li class="pc-item"><a class="pc-link" href="#!">Add Employee</a></li>
         <li class="pc-item"><a class="pc-link" href="#!">Departments</a></li>
-        <li class="pc-item"><a class="pc-link" href="#!">Employees</a></li>
+        <li class="pc-item"><a class="pc-link" href="#!">Attendence</a></li>
+        <li class="pc-item"><a class="pc-link" href="#!">Salary Management</a></li>
+        <li class="pc-item"><a class="pc-link" href="#!">Leave Request</a></li>
     </ul>
 </li>
                 <!-- Inventory  & Purchase -->
                 <li class="pc-item pc-hasmenu">
     <a href="#!" class="pc-link">
         <span class="pc-micon"><i class="ti ti-shopping-cart"></i></span>
-        <span class="pc-mtext">Inventory & Purchase</span>
+        <span class="pc-mtext">Inventory Management</span>
         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
     </a>
     <ul class="pc-submenu">
-        <li class="pc-item"><a class="pc-link" href="categories">Purchase Orders</a></li>
-        <li class="pc-item"><a class="pc-link" href="#!">Goods Receipt Notes (GRN)</a></li>
-        <li class="pc-item"><a class="pc-link" href="#!">Inventory Stock</a></li>
-        <li class="pc-item"><a class="pc-link" href="#!">Stock Adjustments</a></li>
+        <li class="pc-item"><a class="pc-link" href="categories">All Materials</li>
+        <li class="pc-item"><a class="pc-link" href="#!">Add New Materials</a></li>
+        <li class="pc-item"><a class="pc-link" href="#!">Suppliers</a></li>
+        <li class="pc-item"><a class="pc-link" href="#!">Purchase List</a></li>
+        <li class="pc-item"><a class="pc-link" href="#!">Stock Report</a></li>
+        <li class="pc-item"><a class="pc-link" href="#!">Low Stock Report</a></li>
     </ul>
 </li
 
