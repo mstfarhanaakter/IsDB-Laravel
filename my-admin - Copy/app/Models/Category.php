@@ -9,4 +9,11 @@ class Category extends Model
 {
     use HasFactory;
      protected $fillable = ['name', 'details'];
+
+    //   public function employee(): HasOne
+    // {
+    //     return $this->hasOne(Employee::class);
+    // }
+
+
 }
