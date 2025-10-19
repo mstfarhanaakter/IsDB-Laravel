@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- [Head] start -->
 
 <head>
   <title>Threadline | Admin</title>

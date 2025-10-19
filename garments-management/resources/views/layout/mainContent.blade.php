@@ -1,7 +1,6 @@
-
 <div class="pc-container">
     <div class="pc-content">
-        
+
         <div class="page-header">
             <div class="page-block">
                 <div class="row align-items-center">
@@ -10,11 +9,12 @@
                         <div class="row">
 
                             <!-- @yield('content')-->
-                           @include('table')
+                            @include('table')
                         </div>
                         <!-- [ Main Content ] end -->
                     </div>
                 </div>
             </div>
         </div>
-      
+    </div>
+</div>

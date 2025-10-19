@@ -1,4 +1,4 @@
-@include('layout.header')
+<!-- @include('layout.header') -->
 
 
 <!-- [ Main Content ] start -->
@@ -70,7 +70,6 @@
                                 </td>
                             </tr>
                         </tbody>
-
                     </table>
                 </div>
             </div>
@@ -81,5 +80,3 @@
 
 </div>
 <!-- [ Main Content ] end -->
-</div>
-</section>
