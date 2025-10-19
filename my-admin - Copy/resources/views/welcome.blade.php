@@ -1,4 +1,4 @@
-@include('layouts.header')
+@include('layout.header')
 
   <!-- [ Pre-loader ] start -->
 <div class="loader-bg">
@@ -11,13 +11,13 @@
 
 
 <!-- sidebar is here -->
- @include('layouts.sidebar')
+ @include('layout.sidebar')
    
   
 <!-- [ Sidebar Menu ] end --> <!-- [ Header Topbar ] start -->
 
 
-@include('layouts.topbar')
+@include('layout.topbar')
 <!-- [ Header ] end -->
 
 
@@ -45,10 +45,10 @@
       <!-- [ breadcrumb ] end -->
       <!-- [ Main Content ] start -->
 
-     @include('layouts.analytics')
+     @include('layout.analytics')
 <!-- [Main content ends here ] -->
 
 
  
 
-  @include('layouts.footer')
+  @include('layout.footer')
