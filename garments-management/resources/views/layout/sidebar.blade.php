@@ -2,7 +2,7 @@
 <nav class="pc-sidebar">
   <div class="navbar-wrapper">
     <div class="m-header">
-      <a href="#!" class="b-brand text-primary">
+      <a href="/" class="b-brand text-primary">
         <!-- ========   Change your logo from here   ========= -->
         <!-- <img src="../assets/images/logo-white.svg" class="img-fluid logo-lg" alt="logo"> -->
         <img src="../assets/images/threadline-logo-black.svg" class="img-fluid me-2" style="height:40px;" alt="thread logo">
@@ -11,7 +11,7 @@
     <div class="navbar-content">
       <ul class="pc-navbar">
         <li class="pc-item">
-          <a href="#" class="pc-link">
+          <a href="/" class="pc-link">
             <span class="pc-micon"><i class="ti ti-dashboard"></i></span>
             <span class="pc-mtext">Dashboard</span>
           </a>
@@ -20,7 +20,7 @@
         <li class="pc-item pc-hasmenu">
           <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-users"></i></span><span class="pc-mtext">Employee Management</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>
           <ul class="pc-submenu">
-            <li class="pc-item"><a class="pc-link" href="#!">All Employee</a></li>
+            <li class="pc-item"><a class="pc-link" href="employee/index">All Employee</a></li>
             <li class="pc-item"><a class="pc-link" href="#!">Add Employee</a></li>
             <li class="pc-item"><a class="pc-link" href="#!">Departments</a></li>
             <li class="pc-item"><a class="pc-link" href="#!">Attenence</a></li>

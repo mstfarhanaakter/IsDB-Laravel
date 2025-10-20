@@ -11,8 +11,9 @@ class EmployeeController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
+    {   
+        $employee = Employee::all();
+        return view ('employee.index' , compact('employee'));
     }
 
     /**
@@ -20,7 +21,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+       return view('employee.create');
     }
 
     /**
