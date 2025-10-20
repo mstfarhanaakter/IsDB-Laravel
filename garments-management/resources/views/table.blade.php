@@ -1,10 +1,4 @@
-<!-- @include('layout.header') -->
 
-
-<!-- [ Main Content ] start -->
-<div class="row">
-
-    <!-- KeyTable Integration table start -->
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
@@ -76,7 +70,4 @@
         </div>
     </div>
 
-    <!-- KeyTable Integration table end -->
-
-</div>
-<!-- [ Main Content ] end -->
+   

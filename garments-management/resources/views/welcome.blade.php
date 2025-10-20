@@ -1,9 +1,5 @@
-@include('layout.header')
-@include('layout.sidebar')
-@include('layout.topbar')
+@extends('layout.app')
 
-@include('layout.mainContent')
-
-
-
-@include('layout.footer')
+@section('content')
+    @include('table')
+@endsection
