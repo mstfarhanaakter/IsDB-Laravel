@@ -7,4 +7,4 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-Route::get('/employee/index', [EmployeeController::class, 'index'])->name('employee.index');
+Route::resource('employees', EmployeeController::class);

@@ -8,59 +8,97 @@ use Illuminate\Http\Request;
 class EmployeeController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * সব Employee এর list দেখাবে
      */
     public function index()
-    {   
-        $employee = Employee::all();
-        return view ('employee.index' , compact('employee'));
+    {
+        // সব employee ডাটাবেজ থেকে নিয়ে আসা
+        $employees = Employee::all();
+        // index view এ পাঠানো
+        return view('employees.index', compact('employees'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * নতুন employee create করার form দেখাবে
      */
     public function create()
     {
-       return view('employee.create');
+        return view('employees.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * নতুন employee ডাটাবেজে সংরক্ষণ করবে
      */
     public function store(Request $request)
     {
-        //
+        // Form validation
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:employee,email',
+            'phone' => 'nullable|numeric',
+            'department' => 'nullable|string|max:100',
+            'salary' => 'nullable|numeric',
+            'joining_date' => 'nullable|date',
+        ]);
+
+        // Employee create করা
+        Employee::create($request->all());
+
+        // Success message সহ redirect
+        return redirect()->route('employees.index')
+                         ->with('success', 'Employee added successfully.');
     }
 
     /**
-     * Display the specified resource.
+     * নির্দিষ্ট employee এর বিস্তারিত দেখাবে
      */
     public function show(Employee $employee)
     {
-        //
+        // Show view এ employee পাঠানো
+        return view('employees.show', compact('employee'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * নির্দিষ্ট employee edit form দেখাবে
      */
     public function edit(Employee $employee)
     {
-        //
+        return view('employees.edit', compact('employee'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * নির্দিষ্ট employee update করবে
      */
     public function update(Request $request, Employee $employee)
     {
-        //
+        // Validation
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:employee,email,' . $employee->id,
+            'phone' => 'nullable|numeric',
+            'department' => 'nullable|string|max:100',
+            'salary' => 'nullable|numeric',
+            'joining_date' => 'nullable|date',
+        ]);
+
+        // Employee update করা
+        $employee->update($request->all());
+
+        // Success message সহ redirect
+        return redirect()->route('employees.index')
+                         ->with('success', 'Employee updated successfully.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * নির্দিষ্ট employee delete করবে
      */
     public function destroy(Employee $employee)
     {
-        //
+        // Employee delete করা
+        $employee->delete();
+
+        // Success message সহ redirect
+        return redirect()->route('employees.index')
+                         ->with('success', 'Employee deleted successfully.');
     }
 }

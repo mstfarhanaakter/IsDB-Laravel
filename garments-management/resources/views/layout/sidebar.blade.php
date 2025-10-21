@@ -20,8 +20,7 @@
         <li class="pc-item pc-hasmenu">
           <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-users"></i></span><span class="pc-mtext">Employee Management</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>
           <ul class="pc-submenu">
-            <li class="pc-item"><a class="pc-link" href="employee/index">All Employee</a></li>
-            <li class="pc-item"><a class="pc-link" href="#!">Add Employee</a></li>
+            <li class="pc-item"><a class="pc-link" href={{ route('employees.index') }}>Manage Employees</a></li> 
             <li class="pc-item"><a class="pc-link" href="#!">Departments</a></li>
             <li class="pc-item"><a class="pc-link" href="#!">Attenence</a></li>
             <li class="pc-item"><a class="pc-link" href="#!">Salary Management</a></li>
