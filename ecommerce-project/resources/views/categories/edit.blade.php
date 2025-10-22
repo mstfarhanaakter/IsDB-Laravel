@@ -1,6 +1,6 @@
-<!-- @extends('layouts.app')
+@extends('layouts.app')
 @section('title', 'Edit Category')
-@section('content') -->
+@section('content')
 
 <!-- Page Header -->
 <div class="text-center mb-4">
