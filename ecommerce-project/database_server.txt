@@ -1,0 +1,3 @@
+database name: farhanas_ecommerce_project
+database user: farhanas_ecommerce_project
+database password: R6^iyT];BNeJGPM.
