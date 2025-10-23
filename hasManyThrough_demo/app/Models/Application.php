@@ -21,10 +21,10 @@ class Application extends Model
         return $this->hasManyThrough(
         Deployment::class, // final model
          Environment::class,  // intermediate model
-         'application_id',
-         'environment_id',
-         'id',
-         'id'
+         'application_id',  // Environment এর foreign key
+         'environment_id', // Deployment এর foreign key
+         'id', // Application primary key
+         'id'  // Environment primary key
         );
     }
 }
