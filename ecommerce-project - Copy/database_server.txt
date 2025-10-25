@@ -1,3 +1,0 @@
-database name: ashikuz7_ecommerce_project 
-database user: ashikuz7_ecommerce_project
-database password: T~W6bZc.Oy-RyVy0

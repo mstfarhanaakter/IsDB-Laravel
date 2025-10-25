@@ -1,97 +1,100 @@
 <!-- Sidebar Start -->
-<div class="sidebar pe-4 pb-3">
-    <nav class="navbar bg-light navbar-light">
-        <a href="index.html" class="navbar-brand mx-4 mb-3">
-            <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>DASHMIN</h3>
+<div class="sidebar bg-light border-end vh-100">
+    <nav class="navbar navbar-light flex-column align-items-start p-3">
+        <!-- Brand -->
+        <a href="index.html" class="navbar-brand d-flex align-items-center mb-4">
+            <i class="fa fa-hashtag fa-lg text-primary me-2"></i>
+            <span class="h4 mb-0 text-primary fw-bold">Admin</span>
         </a>
-        <div class="d-flex align-items-center ms-4 mb-4">
+
+        <!-- User Profile -->
+        <div class="d-flex align-items-center mb-4">
             <div class="position-relative">
-                <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                <div
-                    class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
-                </div>
+                <img class="rounded-circle border border-2 border-white" src="img/user.jpg" alt="User" style="width: 50px; height: 50px;">
+                <span class="bg-success rounded-circle border border-white position-absolute bottom-0 end-0 p-1"></span>
             </div>
             <div class="ms-3">
-                <h6 class="mb-0">Aminul Islam</h6>
-                <span>Admin</span>
+                <h6 class="mb-0 fw-bold">Ashikuzzaman</h6>
+                <small class="text-muted">Admin</small>
             </div>
         </div>
-        <div class="navbar-nav w-100">
-            <a href="index.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                        class="fa fa-boxes me-2"></i>Products</a>
-                <div class="dropdown-menu bg-transparent border-0">
-                    <a href="products/create" class="dropdown-item">Add Product</a>
-                    <a href="products" class="dropdown-item">All Products</a>
-                    <a href="categories.html" class="dropdown-item">Categories</a>
-                    <a href="brands.html" class="dropdown-item">Brands</a>
-                </div>
-            </div>
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                        class="fa fa-shopping-bag me-2"></i>Orders</a>
-                <div class="dropdown-menu bg-transparent border-0">
-                    <a href="orders.html" class="dropdown-item">All Orders</a>
-                    <a href="pending-orders.html" class="dropdown-item">Pending Orders</a>
-                    <a href="processing-orders.html" class="dropdown-item">Processing Orders</a>
-                    <a href="completed-orders.html" class="dropdown-item">Completed Orders</a>
 
-                </div>
-            </div>
-            <!-- categories -->
+        <!-- Navigation -->
+        <div class="nav flex-column w-100">
+            <a href="index.html" class="nav-link active d-flex align-items-center mb-1 rounded">
+                <i class="fa fa-tachometer-alt me-2"></i> Dashboard
+            </a>
 
+            <!-- Products -->
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                        class="fa fa-tags me-2"></i>Categories</a>
-                <div class="dropdown-menu bg-transparent border-0">
-
-                    <!-- <a href="add-category" class="dropdown-item">Add Category</a> -->
-                    <a href="categories" class="dropdown-item">All Categories</a>
-                </div>
+                <a href="#" class="nav-link dropdown-toggle d-flex align-items-center mb-1 rounded" data-bs-toggle="dropdown">
+                    <i class="fa fa-boxes me-2"></i> Products
+                </a>
+                <ul class="dropdown-menu border-0 shadow-sm">
+                    <li><a href="products/create" class="dropdown-item">Add Product</a></li>
+                    <li><a href="products" class="dropdown-item">All Products</a></li>
+                    <li><a href="categories.html" class="dropdown-item">Categories</a></li>
+                    <li><a href="brands.html" class="dropdown-item">Brands</a></li>
+                </ul>
             </div>
 
-
-            <!-- customer -->
-
+            <!-- Orders -->
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                        class="fa fa-users me-2"></i>Customers</a>
-                <div class="dropdown-menu bg-transparent border-0">
-                    <a href="customers.html" class="dropdown-item">All Customers</a>
-                    <a href="add-customer.html" class="dropdown-item">Add Customer</a>
-
-                </div>
+                <a href="#" class="nav-link dropdown-toggle d-flex align-items-center mb-1 rounded" data-bs-toggle="dropdown">
+                    <i class="fa fa-shopping-bag me-2"></i> Orders
+                </a>
+                <ul class="dropdown-menu border-0 shadow-sm">
+                    <li><a href="orders.html" class="dropdown-item">All Orders</a></li>
+                    <li><a href="pending-orders.html" class="dropdown-item">Pending Orders</a></li>
+                    <li><a href="processing-orders.html" class="dropdown-item">Processing Orders</a></li>
+                    <li><a href="completed-orders.html" class="dropdown-item">Completed Orders</a></li>
+                </ul>
             </div>
 
-
-            <!-- payments -->
-
+            <!-- Categories -->
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                        class="fa fa-credit-card me-2"></i>Payments</a>
-                <div class="dropdown-menu bg-transparent border-0">
-                    <a href="all-payments.html" class="dropdown-item">All Payments</a>
-                    <a href="pending-payments.html" class="dropdown-item">Pending Payments</a>
-                    <a href="failed-payments.html" class="dropdown-item">Failed Payments</a>
-                </div>
+                <a href="#" class="nav-link dropdown-toggle d-flex align-items-center mb-1 rounded" data-bs-toggle="dropdown">
+                    <i class="fa fa-tags me-2"></i> Categories
+                </a>
+                <ul class="dropdown-menu border-0 shadow-sm">
+                    <li><a href="categories" class="dropdown-item">All Categories</a></li>
+                </ul>
             </div>
 
-            <!-- reports -->
-
+            <!-- Customers -->
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                        class="fa fa-chart-line me-2"></i>Reports</a>
-                <div class="dropdown-menu bg-transparent border-0">
-                    <a href="sales-reports.html" class="dropdown-item">Sales Reports</a>
-                    <a href="orders-reports.html" class="dropdown-item">Orders Reports</a>
-                    <a href="payment-reports.html" class="dropdown-item">Income Reports</a>
-                </div>
+                <a href="#" class="nav-link dropdown-toggle d-flex align-items-center mb-1 rounded" data-bs-toggle="dropdown">
+                    <i class="fa fa-users me-2"></i> Customers
+                </a>
+                <ul class="dropdown-menu border-0 shadow-sm">
+                    <li><a href="customers.html" class="dropdown-item">All Customers</a></li>
+                    <li><a href="add-customer.html" class="dropdown-item">Add Customer</a></li>
+                </ul>
             </div>
 
+            <!-- Payments -->
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle d-flex align-items-center mb-1 rounded" data-bs-toggle="dropdown">
+                    <i class="fa fa-credit-card me-2"></i> Payments
+                </a>
+                <ul class="dropdown-menu border-0 shadow-sm">
+                    <li><a href="all-payments.html" class="dropdown-item">All Payments</a></li>
+                    <li><a href="pending-payments.html" class="dropdown-item">Pending Payments</a></li>
+                    <li><a href="failed-payments.html" class="dropdown-item">Failed Payments</a></li>
+                </ul>
+            </div>
 
-
-
+            <!-- Reports -->
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle d-flex align-items-center mb-1 rounded" data-bs-toggle="dropdown">
+                    <i class="fa fa-chart-line me-2"></i> Reports
+                </a>
+                <ul class="dropdown-menu border-0 shadow-sm">
+                    <li><a href="sales-reports.html" class="dropdown-item">Sales Reports</a></li>
+                    <li><a href="orders-reports.html" class="dropdown-item">Orders Reports</a></li>
+                    <li><a href="payment-reports.html" class="dropdown-item">Income Reports</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
 </div>
