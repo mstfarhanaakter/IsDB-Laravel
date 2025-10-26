@@ -14,8 +14,8 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::with('courses')->get();
-        $courses = Course::all();
-        return view('students.index', compact('students', 'courses'));
+        // $courses = Course::all();
+        return view('students.index', compact('students'));
         
     }
 
@@ -24,7 +24,8 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        $subjects  = Course::all();
+        return view('students.create', compact('subjects'));
     }
 
     /**
