@@ -5,7 +5,7 @@
       <a href="/" class="b-brand text-primary">
         <!-- ========   Change your logo from here   ========= -->
         <!-- <img src="../assets/images/logo-white.svg" class="img-fluid logo-lg" alt="logo"> -->
-        <img src="../assets/images/threadline-logo-black.svg" class="img-fluid me-2" style="height:40px;" alt="thread logo">
+        <img src={{asset('assets/images/threadline-logo-black.svg')}} class="img-fluid me-2" style="height:40px;" alt="thread logo">
       </a>
     </div>
     <div class="navbar-content">
