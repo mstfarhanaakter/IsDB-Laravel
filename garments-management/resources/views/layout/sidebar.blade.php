@@ -37,8 +37,8 @@
             <li class="pc-item"><a class="pc-link" href="{{ route('materials.index') }}">Add New Materials</a></li>
             <li class="pc-item"><a class="pc-link" href="{{ route('suppliers.index') }}">Suppliers</a></li>
             <li class="pc-item"><a class="pc-link" href="{{ route('purchases.index') }}">Purchase List</a></li>
-            <li class="pc-item"><a class="pc-link" href="#!">Stock Report</a></li>
-            <li class="pc-item"><a class="pc-link" href="#!">Low Stock Report</a></li>
+            <li class="pc-item"><a class="pc-link" href="{{ route('stocktransactions.index') }}">Stock Report</a></li>
+            <!-- <li class="pc-item"><a class="pc-link" href="#!">Low Stock Report</a></li> -->
           </ul>
         </li>
 

@@ -19,6 +19,6 @@ Route::resource('productions', ProductionController::class);
 Route::resource('materials',MaterialController::class);
 Route::resource('suppliers', SupplierController::class);
 Route::resource('purchases', PurchaseController::class);
-Route::resource('stock-report', StockReportController::class);
+Route::resource('stocktransactions', StockReportController::class);
 
 
