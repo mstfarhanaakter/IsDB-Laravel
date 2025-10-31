@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
+// add custom work progress route
+Route::get('/productions/work-progress', [ProductionController::class, 'workProgress'])
+     ->name('productions.work-progress');
+
 Route::resource('employees', EmployeeController::class);
 Route::resource('departments', DepartmentsController::class);
 Route::resource('productions', ProductionController::class);
@@ -23,6 +27,13 @@ Route::resource('suppliers', SupplierController::class);
 Route::resource('purchases', PurchaseController::class);
 Route::resource('stocktransactions', StockReportController::class);
 Route::resource('production_lines', ProductionLineController::class);
+
+
+
+// Route::get('/work-progress', [ProductionController::class, 'workProgress'])->name('productions.work_progress');
+
+
+
 
 
 

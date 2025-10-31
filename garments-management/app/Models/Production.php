@@ -9,18 +9,21 @@ class Production extends Model
 {
     use HasFactory;
 
+    
     protected $casts = [
-        'is_completed' => 'boolean',
-    ];
+    'production_date' => 'date',
+    'is_completed' => 'boolean',
+];
 
     protected $fillable = [
         'order_no',
         'production_date',
+        'planned_qty',
         'produced_qty',
         'defect_qty',
         'remarks',
         'is_completed',
-        'line_id'
+        'line_id',
     ];
 
     public function line()

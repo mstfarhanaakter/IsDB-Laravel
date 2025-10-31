@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container mt-4">
+    <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2 class="mb-0">Productions</h2>
         <div>
@@ -14,6 +15,7 @@
         </div>
     </div>
 
+    <!-- Success Message -->
     @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
@@ -21,6 +23,7 @@
         </div>
     @endif
 
+    <!-- Productions Table -->
     <div class="table-responsive shadow-sm rounded">
         <table class="table table-striped table-hover align-middle">
             <thead class="table-dark text-center">
@@ -28,6 +31,7 @@
                     <th>#</th>
                     <th>Order No</th>
                     <th>Production Date</th>
+                    <th>Planned Qty</th>
                     <th>Produced Qty</th>
                     <th>Defect Qty</th>
                     <th>Line</th>
@@ -38,9 +42,10 @@
             <tbody>
                 @forelse($productions as $production)
                 <tr class="text-center">
-                    <td >{{ $loop->iteration }}</td>
+                    <td>{{ $loop->iteration }}</td>
                     <td>{{ $production->order_no }}</td>
                     <td>{{ \Carbon\Carbon::parse($production->production_date)->format('d-m-Y') }}</td>
+                    <td>{{ $production->planned_qty }}</td>
                     <td>{{ $production->produced_qty }}</td>
                     <td>{{ $production->defect_qty }}</td>
                     <td>{{ $production->line->name ?? '-' }}</td>
@@ -66,13 +71,14 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="8" class="text-center text-muted">No productions found.</td>
+                    <td colspan="9" class="text-center text-muted">No productions found.</td>
                 </tr>
                 @endforelse
             </tbody>
         </table>
     </div>
 
+    <!-- Pagination -->
     <div class="mt-3">
         {{ $productions->links() }}
     </div>

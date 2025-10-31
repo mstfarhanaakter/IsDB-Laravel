@@ -2,77 +2,98 @@
 
 @section('content')
 <div class="container mt-4">
-    <h1>Edit Production</h1>
+    <h2 class="mb-4">Edit Production</h2>
 
+    <!-- Display Validation Errors -->
     @if ($errors->any())
-        <div class="alert alert-danger">
+        <div class="alert alert-danger alert-dismissible fade show">
             <ul class="mb-0">
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
             </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
 
-    <form action="{{ route('productions.update', $production->id) }}" method="POST">
-        @csrf
-        @method('PUT')
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form action="{{ route('productions.update', $production->id) }}" method="POST">
+                @csrf
+                @method('PUT')
 
-        <div class="row g-3">
-            <div class="col-md-6">
-                <label for="order_no" class="form-label">Order No <span class="text-danger">*</span></label>
-                <input type="text" name="order_no" id="order_no" class="form-control" value="{{ old('order_no', $production->order_no) }}" required>
-            </div>
+                <div class="row g-3">
+                    <!-- Left Column -->
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="order_no" class="form-label">Order Number <span class="text-danger">*</span></label>
+                            <input type="text" name="order_no" id="order_no" class="form-control" value="{{ old('order_no', $production->order_no) }}" required>
+                        </div>
 
-            <div class="col-md-6">
-                <label for="production_date" class="form-label">Production Date <span class="text-danger">*</span></label>
-                <input type="date" name="production_date" id="production_date" class="form-control" value="{{ old('production_date', $production->production_date) }}" required>
-            </div>
+                        <div class="mb-3">
+                            <label for="production_date" class="form-label">Production Date <span class="text-danger">*</span></label>
+                            <input type="date" name="production_date" id="production_date" class="form-control" value="{{ old('production_date', $production->production_date->format('Y-m-d')) }}" required>
+                        </div>
 
-            <div class="col-md-6">
-                <label for="produced_qty" class="form-label">Produced Quantity</label>
-                <input type="number" name="produced_qty" id="produced_qty" class="form-control" value="{{ old('produced_qty', $production->produced_qty) }}">
-            </div>
+                        <div class="mb-3">
+                            <label for="planned_qty" class="form-label">Planned Quantity</label>
+                            <input type="number" name="planned_qty" id="planned_qty" class="form-control" value="{{ old('planned_qty', $production->planned_qty ?? 0) }}" min="0">
+                        </div>
 
-            <div class="col-md-6">
-                <label for="defect_qty" class="form-label">Defect Quantity</label>
-                <input type="number" name="defect_qty" id="defect_qty" class="form-control" value="{{ old('defect_qty', $production->defect_qty) }}">
-            </div>
+                        <div class="mb-3">
+                            <label for="line_id" class="form-label">Production Line <span class="text-danger">*</span></label>
+                            <select name="line_id" id="line_id" class="form-select" required>
+                                <option value="">Select Line</option>
+                                @foreach($lines as $line)
+                                    <option value="{{ $line->id }}" {{ old('line_id', $production->line_id) == $line->id ? 'selected' : '' }}>
+                                        {{ $line->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
 
-            <div class="col-md-6">
-                <label for="line_id" class="form-label">Production Line <span class="text-danger">*</span></label>
-                <select name="line_id" id="line_id" class="form-control" required>
-                    <option value="">Select Line</option>
-                    @foreach($lines as $line)
-                        <option value="{{ $line->id }}" {{ old('line_id', $production->line_id) == $line->id ? 'selected' : '' }}>
-                            {{ $line->name }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
+                    <!-- Right Column -->
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="produced_qty" class="form-label">Produced Quantity</label>
+                            <input type="number" name="produced_qty" id="produced_qty" class="form-control" value="{{ old('produced_qty', $production->produced_qty ?? 0) }}" min="0">
+                        </div>
 
-            <div class="col-md-6">
-                <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
-                <select name="is_completed" id="status" class="form-control" required>
-                    <option value="0" {{ old('is_completed', $production->is_completed) == 0 ? 'selected' : '' }}>Pending</option>
-                    <option value="1" {{ old('is_completed', $production->is_completed) == 1 ? 'selected' : '' }}>Completed</option>
-                </select>
-            </div>
+                        <div class="mb-3">
+                            <label for="defect_qty" class="form-label">Defect Quantity</label>
+                            <input type="number" name="defect_qty" id="defect_qty" class="form-control" value="{{ old('defect_qty', $production->defect_qty ?? 0) }}" min="0">
+                        </div>
 
-            <div class="col-md-12">
-                <label for="remarks" class="form-label">Remarks</label>
-                <textarea name="remarks" id="remarks" class="form-control">{{ old('remarks', $production->remarks) }}</textarea>
-            </div>
+                        <div class="mb-3">
+                            <label class="form-label">Status <span class="text-danger">*</span></label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="is_completed" id="status_pending" value="0" {{ old('is_completed', $production->is_completed) == 0 ? 'checked' : '' }}>
+                                <label class="form-check-label" for="status_pending">Pending</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="is_completed" id="status_completed" value="1" {{ old('is_completed', $production->is_completed) == 1 ? 'checked' : '' }}>
+                                <label class="form-check-label" for="status_completed">Completed</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="remarks" class="form-label">Remarks</label>
+                            <textarea name="remarks" id="remarks" class="form-control" rows="1">{{ old('remarks', $production->remarks) }}</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end mt-4">
+                    <a href="{{ route('productions.index') }}" class="btn btn-secondary me-2">
+                        Cancel
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        Update Production
+                    </button>
+                </div>
+            </form>
         </div>
-
-        <div class="mt-4">
-            <button type="submit" class="btn btn-success me-2">
-                <i class="bi bi-check-circle"></i> Update Production
-            </button>
-            <a href="{{ route('productions.index') }}" class="btn btn-secondary">
-                <i class="bi bi-x-circle"></i> Cancel
-            </a>
-        </div>
-    </form>
+    </div>
 </div>
 @endsection

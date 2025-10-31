@@ -12,13 +12,14 @@ return new class extends Migration {
     {
         Schema::create('productions', function (Blueprint $table) {
             $table->id();
-            $table->string('order_no');
-            $table->date('production_date');
-            $table->integer('produced_qty')->default(0);
-            $table->integer('defect_qty')->default(0);
-            $table->string('remarks')->nullable();
-            $table->boolean('is_completed')->default(false);
-            $table->foreignId('line_id')->constrained('production_lines')->onDelete('cascade');
+            $table->string('order_no'); // Order number
+            $table->date('production_date'); // Production date
+            $table->integer('planned_qty')->default(0); // Planned quantity for progress calculation
+            $table->integer('produced_qty')->default(0); // Produced quantity
+            $table->integer('defect_qty')->default(0); // Defective quantity
+            $table->text('remarks')->nullable(); // Optional remarks
+            $table->boolean('is_completed')->default(false); // Completion status
+            $table->foreignId('line_id')->constrained('production_lines')->onDelete('cascade'); // Relation to production line
             $table->timestamps();
         });
     }

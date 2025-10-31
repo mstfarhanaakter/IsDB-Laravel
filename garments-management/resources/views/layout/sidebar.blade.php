@@ -49,7 +49,7 @@
           <ul class="pc-submenu">
             <li class="pc-item"><a class="pc-link" href="{{ route('production_lines.index') }}">Production Lines</a></li>
             <li class="pc-item"><a class="pc-link" href="{{ route('productions.index') }}">New Production Entry</a></li>
-            <li class="pc-item"><a class="pc-link" href="#!">Work Progress</a></li>
+            <li class="pc-item"><a class="pc-link" href="{{ route('productions.work-progress') }}">Work Progress</a></li>
             <li class="pc-item"><a class="pc-link" href="#!">Defect Report</a></li>
             <li class="pc-item"><a class="pc-link" href="#!">Completed Production</a></li>
           </ul>
