@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('productions', function (Blueprint $table) {
+        Schema::create('production_lines', function (Blueprint $table) {
             $table->id();
-            $table->date('production_date');
-            $table->string('line');
-            $table->string('order_no');
-            $table->integer('produced_qty');
-            $table->integer('defect_qty')->default(0);
-            $table->text('remarks')->nullable;
+            $table->string('name')->unique();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('productions');
+        Schema::dropIfExists('production_lines');
     }
 };

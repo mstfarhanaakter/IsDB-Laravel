@@ -9,12 +9,23 @@ class Production extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'is_completed' => 'boolean',
+    ];
+
     protected $fillable = [
-        'production_date',
-        'line',
         'order_no',
+        'production_date',
         'produced_qty',
         'defect_qty',
-        'remarks'
+        'remarks',
+        'is_completed',
+        'line_id'
     ];
+
+    public function line()
+    {
+        return $this->belongsTo(ProductionLine::class, 'line_id');
+    }
+
 }

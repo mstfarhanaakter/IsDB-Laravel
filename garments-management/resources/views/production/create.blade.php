@@ -1,51 +1,74 @@
 @extends('layout.app')
 
 @section('content')
-<div class="card">
-  <div class="card-header">
-    <h5>New Production Entry</h5>
-  </div>
-  <div class="card-body">
+<div class="container mt-4">
+    <h1>Create Production</h1>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form action="{{ route('productions.store') }}" method="POST">
-      @csrf
+        @csrf
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label for="order_no" class="form-label">Order No <span class="text-danger">*</span></label>
+                <input type="text" name="order_no" id="order_no" class="form-control" value="{{ old('order_no') }}" required>
+            </div>
 
-      <div class="mb-3">
-        <label class="form-label">Date</label>
-        <input type="date" name="production_date" class="form-control" required>
-      </div>
+            <div class="col-md-6">
+                <label for="production_date" class="form-label">Production Date <span class="text-danger">*</span></label>
+                <input type="date" name="production_date" id="production_date" class="form-control" value="{{ old('production_date') }}" required>
+            </div>
 
-      <div class="mb-3">
-        <label class="form-label">Production Line</label>
-        <select name="line" class="form-control" required>
-          <option value="">-- Select Line --</option>
-          <option value="Line 1">Line 1</option>
-          <option value="Line 2">Line 2</option>
-          <option value="Line 3">Line 3</option>
-        </select>
-      </div>
+            <div class="col-md-6">
+                <label for="produced_qty" class="form-label">Produced Quantity</label>
+                <input type="number" name="produced_qty" id="produced_qty" class="form-control" value="{{ old('produced_qty', 0) }}">
+            </div>
 
-      <div class="mb-3">
-        <label class="form-label">Order No</label>
-        <input type="text" name="order_no" class="form-control" required>
-      </div>
+            <div class="col-md-6">
+                <label for="defect_qty" class="form-label">Defect Quantity</label>
+                <input type="number" name="defect_qty" id="defect_qty" class="form-control" value="{{ old('defect_qty', 0) }}">
+            </div>
 
-      <div class="mb-3">
-        <label class="form-label">Produced Quantity</label>
-        <input type="number" name="produced_qty" class="form-control" required>
-      </div>
+            <div class="col-md-6">
+                <label for="line_id" class="form-label">Production Line <span class="text-danger">*</span></label>
+                <select name="line_id" id="line_id" class="form-control" required>
+                    <option value="">Select Line</option>
+                    @foreach($lines as $line)
+                        <option value="{{ $line->id }}" {{ old('line_id') == $line->id ? 'selected' : '' }}>{{ $line->name }}</option>
+                    @endforeach
+                </select>
+            </div>
 
-      <div class="mb-3">
-        <label class="form-label">Defect Quantity</label>
-        <input type="number" name="defect_qty" class="form-control">
-      </div>
+            <div class="col-md-6">
+                <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
+                <select name="is_completed" id="status" class="form-control" required>
+                    <option value="0" {{ old('is_completed') == 0 ? 'selected' : '' }}>Pending</option>
+                    <option value="1" {{ old('is_completed') == 1 ? 'selected' : '' }}>Completed</option>
+                </select>
+            </div>
 
-      <div class="mb-3">
-        <label class="form-label">Remarks</label>
-        <textarea name="remarks" class="form-control"></textarea>
-      </div>
+            <div class="col-md-12">
+                <label for="remarks" class="form-label">Remarks</label>
+                <textarea name="remarks" id="remarks" class="form-control">{{ old('remarks') }}</textarea>
+            </div>
+        </div>
 
-      <button type="submit" class="btn btn-primary">Save</button>
+        <div class="mt-4">
+            <button type="submit" class="btn btn-success me-2">
+                <i class="bi bi-check-circle"></i> Create Production
+            </button>
+            <a href="{{ route('productions.index') }}" class="btn btn-secondary">
+                <i class="bi bi-x-circle"></i> Cancel
+            </a>
+        </div>
     </form>
-  </div>
 </div>
 @endsection
