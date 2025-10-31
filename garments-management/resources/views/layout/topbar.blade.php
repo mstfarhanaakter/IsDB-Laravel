@@ -57,7 +57,7 @@
                   <div class="d-flex">
                     <div class="flex-shrink-0">
 
-                      <img src={{ asset('assets/images/user/avatar-2.jpg') }} alt="user-image" class="user-avtar">
+                      <img src="{{ asset('assets/images/user/avatar-2.jpg') }}" alt="user-image" class="user-avtar">
                     </div>
                     <div class="flex-grow-1 ms-1">
                       <span class="float-end text-muted">3:00 AM</span>
@@ -70,9 +70,9 @@
                   <div class="d-flex">
                     <div class="flex-shrink-0">
                      
-                      <img src={{ asset('assets/images/user/avatar-1.jpg') }} alt="user-image" class="user-avtar">
+                      <img src="{{ asset('assets/images/user/avatar-1.jpg') }}" alt="user-image" class="user-avtar">
                     </div>
-                    <div class="flex-grow-1 ms-1">
+                    <div class="flex-grow ms-1">
                       <span class="float-end text-muted">6:00 PM</span>
                       <p class="text-body mb-1"><b>Aida Burg</b> commented your post.</p>
                       <span class="text-muted">5 August</span>
@@ -82,9 +82,9 @@
                 <a class="list-group-item list-group-item-action">
                   <div class="d-flex">
                     <div class="flex-shrink-0">
-                      <img src={{ asset('assets/images/user/avatar-3.jpg') }} alt="user-image" class="user-avtar">
+                      <img src="{{ asset('assets/images/user/avatar-3.jpg') }}" alt="user-image" class="user-avtar">
                     </div>
-                    <div class="flex-grow-1 ms-1">
+                    <div class="flex-grow ms-1">
                       <span class="float-end text-muted">2:45 PM</span>
                       <p class="text-body mb-1"><b>There was a failure to your setup.</b></p>
                       <span class="text-muted">7 hours ago</span>
@@ -94,9 +94,9 @@
                 <a class="list-group-item list-group-item-action">
                   <div class="d-flex">
                     <div class="flex-shrink-0">
-                      <img src={{asset('assets/images/user/avatar-4.jpg')}} alt="user-image" class="user-avtar">
+                      <img src="{{asset('assets/images/user/avatar-4.jpg')}}" alt="user-image" class="user-avtar">
                     </div>
-                    <div class="flex-grow-1 ms-1">
+                    <div class="flex-grow ms-1">
                       <span class="float-end text-muted">9:10 PM</span>
                       <p class="text-body mb-1"><b>Cristina Danny </b> invited to join <b> Meeting.</b></p>
                       <span class="text-muted">Daily scrum meeting time</span>
@@ -115,16 +115,16 @@
           <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button"
             aria-haspopup="false" data-bs-auto-close="outside" aria-expanded="false">
 
-            <img src={{ asset('assets/images/user/woman.png') }} alt="user-image" class="user-avtar">
+            <img src="{{ asset('assets/images/user/woman.png') }}" alt="user-image" class="user-avtar">
             <span>Farhana</span>
           </a>
           <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
             <div class="dropdown-header">
               <div class="d-flex mb-1">
                 <div class="flex-shrink-0">
-                  <img src={{ asset('assets/images/user/woman.png') }} alt="user-image" class="user-avtar wid-35">
+                  <img src="{{ asset('assets/images/user/woman.png') }}" alt="user-image" class="user-avtar wid-35">
                 </div>
-                <div class="flex-grow-1 ms-3">
+                <div class="flex-grow ms-3">
                   <h6 class="mb-1">Farhana</h6>
                   <span>Admin</span>
                 </div>

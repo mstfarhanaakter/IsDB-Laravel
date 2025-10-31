@@ -7,7 +7,7 @@
                     <div class="col-md-12">
                         <!--[ Main Content ]start -->
                         <div class="row">
-                            <!-- @include('partial.alert') -->
+                            
                             @yield('content')
                         </div>
                         <!-- [ Main Content ] end -->

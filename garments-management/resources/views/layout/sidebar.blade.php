@@ -20,8 +20,8 @@
         <li class="pc-item pc-hasmenu">
           <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-users"></i></span><span class="pc-mtext">Employee Management</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>
           <ul class="pc-submenu">
-            <li class="pc-item"><a class="pc-link" href={{ route('employees.index') }}>Manage Employees</a></li> 
-            <li class="pc-item"><a class="pc-link" href={{ route('departments.index') }}>Departments</a></li>
+            <li class="pc-item"><a class="pc-link" href="{{ route('employees.index') }}">Manage Employees</a></li> 
+            <li class="pc-item"><a class="pc-link" href="{{ route('departments.index') }}">Departments</a></li>
             <li class="pc-item"><a class="pc-link" href="#!">Attenence</a></li>
             <li class="pc-item"><a class="pc-link" href="#!">Salary Management</a></li>
             <li class="pc-item"><a class="pc-link" href="#!">Leave Request</a></li>
@@ -34,9 +34,9 @@
           <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-building-store"></i></span><span class="pc-mtext">Inventory Management</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>
           <ul class="pc-submenu">
             <li class="pc-item"><a class="pc-link" href="#!">All Materials</a></li>
-            <li class="pc-item"><a class="pc-link" href="#!">Add New Materials</a></li>
-            <li class="pc-item"><a class="pc-link" href="#!">Suppliers</a></li>
-            <li class="pc-item"><a class="pc-link" href="#!">Purchase List</a></li>
+            <li class="pc-item"><a class="pc-link" href="{{ route('materials.index') }}">Add New Materials</a></li>
+            <li class="pc-item"><a class="pc-link" href="{{ route('suppliers.index') }}">Suppliers</a></li>
+            <li class="pc-item"><a class="pc-link" href="{{ route('purchases.index') }}">Purchase List</a></li>
             <li class="pc-item"><a class="pc-link" href="#!">Stock Report</a></li>
             <li class="pc-item"><a class="pc-link" href="#!">Low Stock Report</a></li>
           </ul>
@@ -47,7 +47,7 @@
         <li class="pc-item pc-hasmenu">
           <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-building-factory"></i></span><span class="pc-mtext">Production Management</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>
           <ul class="pc-submenu">
-            <li class="pc-item"><a class="pc-link" href="#!">Production Lines</a></li>
+            <li class="pc-item"><a class="pc-link" href="{{ route('productions.index') }}">Production Lines</a></li>
             <li class="pc-item"><a class="pc-link" href="#!">New Production Entry</a></li>
             <li class="pc-item"><a class="pc-link" href="#!">Work Progress</a></li>
             <li class="pc-item"><a class="pc-link" href="#!">Defect Report</a></li>
