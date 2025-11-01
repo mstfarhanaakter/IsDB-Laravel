@@ -24,14 +24,6 @@
   <link rel="stylesheet" href="{{ asset('assets/fonts/fontawesome.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/fonts/material.css') }}">
 
-  <!-- data tables css -->
-  <link rel="stylesheet" href="../assets/css/plugins/dataTables.bootstrap5.min.css">
-  <link rel="stylesheet" href="../assets/css/plugins/select.bootstrap5.min.css">
-  <link rel="stylesheet" href="../assets/css/plugins/autoFill.bootstrap5.min.css">
-  <link rel="stylesheet" href="../assets/css/plugins/keyTable.bootstrap5.min.css">
-  <link rel="stylesheet" href="../assets/css/style.css" id="main-style-link">
-  <link rel="stylesheet" href="../assets/css/style-preset.css">
-
   <!-- DataTables CSS -->
   <link rel="stylesheet" href="{{ asset('assets/css/plugins/dataTables.bootstrap5.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/plugins/select.bootstrap5.min.css') }}">

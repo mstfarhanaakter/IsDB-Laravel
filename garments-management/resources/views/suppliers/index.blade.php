@@ -21,7 +21,7 @@
             <thead class="table-dark text-center">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Name</th>
+                    <th scope="col">Company Name</th>
                     <th scope="col">Contact Person</th>
                     <th scope="col">Phone</th>
                     <th scope="col">Email</th>

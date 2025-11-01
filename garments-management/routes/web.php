@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\DepartmentsController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\MaterialController;
@@ -28,7 +29,7 @@ Route::resource('purchases', PurchaseController::class);
 Route::resource('stocktransactions', StockReportController::class);
 Route::resource('production_lines', ProductionLineController::class);
 Route::resource('defects', ProductionDefectController::class);
-
+Route::resource('attendances', AttendanceController::class);
 
 
 // Route::get('/work-progress', [ProductionController::class, 'workProgress'])->name('productions.work_progress');

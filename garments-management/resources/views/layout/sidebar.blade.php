@@ -22,7 +22,7 @@
           <ul class="pc-submenu">
             <li class="pc-item"><a class="pc-link" href="{{ route('employees.index') }}">Manage Employees</a></li> 
             <li class="pc-item"><a class="pc-link" href="{{ route('departments.index') }}">Departments</a></li>
-            <li class="pc-item"><a class="pc-link" href="#!">Attenence</a></li>
+            <li class="pc-item"><a class="pc-link" href="{{ route('attendances.index') }}">Attenence</a></li>
             <li class="pc-item"><a class="pc-link" href="#!">Salary Management</a></li>
             <li class="pc-item"><a class="pc-link" href="#!">Leave Request</a></li>
           </ul>

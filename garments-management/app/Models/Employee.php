@@ -9,6 +9,18 @@ class Employee extends Model
 {
     use HasFactory;
 
-    protected $table = 'employee';
-    protected $fillable = ['name', 'email', 'phone', 'department', 'salary', 'joining_date'];
+    protected $fillable = [
+        'name',
+        'email',
+        'phone',
+        'department_id',
+        'salary',
+        'joining_date'
+    ];
+
+    // Relationship: Employee -> Department
+    public function department()
+    {
+        return $this->belongsTo(Departments::class);
+    }
 }

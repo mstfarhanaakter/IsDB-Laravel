@@ -1,18 +1,19 @@
 @extends('layout.app')
 
 @section('content')
-<div class="container">
-    <h2 class="mb-3">Employee List</h2>
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Employees</h2>
+        <a href="{{ route('employees.create') }}" class="btn btn-primary">+ Add Employee</a>
+    </div>
 
-    @if (session('success'))
+    @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <a href="{{ route('employees.create') }}" class="btn btn-primary mb-3">Add New Employee</a>
-
-    <table class="table table-bordered table-striped">
+    <table class="table table-striped table-bordered">
         <thead class="table-dark">
-            <tr class="text-center">
+            <tr>
                 <th>#</th>
                 <th>Name</th>
                 <th>Email</th>
@@ -20,33 +21,31 @@
                 <th>Department</th>
                 <th>Salary</th>
                 <th>Joining Date</th>
-                <th>Action</th>
+                <th class="text-center">Actions</th>
             </tr>
         </thead>
         <tbody>
-            @forelse ($employees as $employee)
+            @forelse($employees as $emp)
                 <tr>
-
-                   <td>{{ $loop->iteration }}</td>
-                    <td>{{ $employee->name }}</td>
-                    <td>{{ $employee->email }}</td>
-                    <td>{{ $employee->phone }}</td>
-                    <td>{{ $employee->department }}</td>
-                    <td>{{ $employee->salary }}</td>
-                    <td>{{ $employee->joining_date }}</td>
-                    <td>
-                        <a href="{{ route('employees.edit', $employee->id) }}" class="btn btn-success btn-sm">Edit</a>
-                        <form action="{{ route('employees.destroy', $employee->id) }}" method="POST" style="display:inline-block;">
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $emp->name }}</td>
+                    <td>{{ $emp->email }}</td>
+                    <td>{{ $emp->phone }}</td>
+                    <td>{{ $emp->department->name ?? '-' }}</td>
+                    <td>{{ $emp->salary }}</td>
+                    <td>{{ $emp->joining_date }}</td>
+                    <td class="text-center">
+                        <a href="{{ route('employees.edit', $emp->id) }}" class="btn btn-sm btn-warning me-1">Edit</a>
+                        <form action="{{ route('employees.destroy', $emp->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm"
-                                onclick="return confirm('Are you sure you want to delete this employee?')">Delete</button>
+                            <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
                         </form>
                     </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="8" class="text-center">No employees found!</td>
+                    <td colspan="8" class="text-center text-muted">No employees found.</td>
                 </tr>
             @endforelse
         </tbody>
