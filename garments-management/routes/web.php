@@ -4,8 +4,8 @@ use App\Http\Controllers\DepartmentsController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ProductionController;
+use App\Http\Controllers\ProductionDefectController;
 use App\Http\Controllers\ProductionLineController;
-use App\Http\Controllers\ProductionManagementController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\StockReportController;
 use App\Http\Controllers\SupplierController;
@@ -27,6 +27,7 @@ Route::resource('suppliers', SupplierController::class);
 Route::resource('purchases', PurchaseController::class);
 Route::resource('stocktransactions', StockReportController::class);
 Route::resource('production_lines', ProductionLineController::class);
+Route::resource('defects', ProductionDefectController::class);
 
 
 

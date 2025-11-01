@@ -6,7 +6,7 @@
   <!-- ================= Header ================= -->
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h3 class="fw-bold text-dark mb-0">
-      <i class="bi bi-clipboard-data text-primary me-2"></i> Garments Factory Dashboard
+      <i class="bi bi-clipboard-data text-primary me-2"></i>Dashboard
     </h3>
     <button class="btn btn-gradient btn-sm" style="background: linear-gradient(90deg, #6366f1, #4f46e5); color: #fff;" onclick="window.print()">
       <i class="bi bi-printer"></i> Print Report

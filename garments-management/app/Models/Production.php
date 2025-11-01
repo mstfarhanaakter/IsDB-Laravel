@@ -31,4 +31,10 @@ class Production extends Model
         return $this->belongsTo(ProductionLine::class, 'line_id');
     }
 
+    // Relation to Production Defects
+    public function defects()
+    {
+        return $this->hasMany(ProductionDefect::class);
+    }
+
 }

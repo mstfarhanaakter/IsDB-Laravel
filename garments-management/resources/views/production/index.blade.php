@@ -2,85 +2,83 @@
 
 @section('content')
 <div class="container mt-4">
-    <!-- Header -->
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2 class="mb-0">Productions</h2>
-        <div>
-            <a href="{{ route('productions.create') }}" class="btn btn-primary me-2">
-                <i class="bi bi-plus-circle"></i> Create Production
-            </a>
-            <button onclick="window.print()" class="btn btn-secondary">
-                <i class="bi bi-printer"></i> Print
-            </button>
-        </div>
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+    <h2 class="mb-2 mb-md-0">Productions</h2>
+    
+    <div class="btn-group">
+        <a href="{{ route('productions.create') }}" class="btn btn-primary">
+            <i class="bi bi-plus-circle me-1"></i> Add Production Entry
+        </a>
+        <button onclick="window.print()" class="btn btn-secondary">
+            <i class="bi bi-printer me-1"></i> Print
+        </button>
     </div>
+</div>
 
-    <!-- Success Message -->
+
     @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="alert alert-success alert-dismissible fade show">
             {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
     @endif
 
-    <!-- Productions Table -->
-    <div class="table-responsive shadow-sm rounded">
-        <table class="table table-striped table-hover align-middle">
-            <thead class="table-dark text-center">
-                <tr>
-                    <th>#</th>
-                    <th>Order No</th>
-                    <th>Production Date</th>
-                    <th>Planned Qty</th>
-                    <th>Produced Qty</th>
-                    <th>Defect Qty</th>
-                    <th>Line</th>
-                    <th>Status</th>
-                    <th style="width: 160px;">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($productions as $production)
-                <tr class="text-center">
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $production->order_no }}</td>
-                    <td>{{ \Carbon\Carbon::parse($production->production_date)->format('d-m-Y') }}</td>
-                    <td>{{ $production->planned_qty }}</td>
-                    <td>{{ $production->produced_qty }}</td>
-                    <td>{{ $production->defect_qty }}</td>
-                    <td>{{ $production->line->name ?? '-' }}</td>
-                    <td>
-                        @if($production->is_completed)
-                            <span class="badge bg-success">Completed</span>
-                        @else
-                            <span class="badge bg-warning text-dark">Pending</span>
-                        @endif
-                    </td>
-                    <td class="text-center">
-                        <a href="{{ route('productions.edit', $production->id) }}" class="btn btn-warning btn-sm me-1">
-                            <i class="bi bi-pencil-square"></i> Edit
-                        </a>
-                        <form action="{{ route('productions.destroy', $production->id) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this production?')">
-                                <i class="bi bi-trash"></i> Delete
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                @empty
-                <tr>
-                    <td colspan="9" class="text-center text-muted">No productions found.</td>
-                </tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <table class="table table-bordered table-hover align-middle text-center table-striped">
+                <thead class="table-dark bg-black">
+                    <tr>
+                        <th>#</th>
+                        <th>Order No</th>
+                        <th>Production Date</th>
+                        <th>Line</th>
+                        <th>Planned Qty</th>
+                        <th>Produced Qty</th>
+                        <th>Defect Qty</th>
+                        <!-- <th>Status</th> -->
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($productions as $production)
+                        <tr>
+                            <td>{{ $loop->iteration + ($productions->currentPage()-1)*$productions->perPage() }}</td>
+                            <td>{{ $production->order_no }}</td>
+                            <td>{{ $production->production_date->format('d M, Y') }}</td>
+                            <td>{{ $production->line->name ?? '-' }}</td>
+                            <td>{{ $production->planned_qty }}</td>
+                            <td>{{ $production->produced_qty }}</td>
+                            <td>{{ $production->defect_qty }}</td>
+                            <!-- <td>
+                                @if($production->is_completed)
+                                    <span class="badge bg-success">Completed</span>
+                                @else
+                                    <span class="badge bg-warning text-dark">Pending</span>
+                                @endif
+                            </td> -->
+                            <td>
+                                <a href="{{ route('productions.edit', $production->id) }}" class="btn btn-sm btn-primary">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <form action="{{ route('productions.destroy', $production->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this production?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="9" class="text-center">No productions found.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
 
-    <!-- Pagination -->
-    <div class="mt-3">
-        {{ $productions->links() }}
+            <div class="mt-3">
+                {{ $productions->links() }}
+            </div>
+        </div>
     </div>
 </div>
 @endsection
