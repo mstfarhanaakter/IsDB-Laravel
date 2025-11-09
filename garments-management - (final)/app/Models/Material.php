@@ -21,4 +21,10 @@ class Material extends Model
     {
         return $this->belongsTo(Supplier::class);
     }
+
+    // Material has many Purchases
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class);
+    }
 }
