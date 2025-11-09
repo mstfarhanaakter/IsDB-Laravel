@@ -6,24 +6,30 @@
 
     <div class="card mb-3">
         <div class="card-body">
-            <dl class="row">
-                <dt class="col-sm-3">Order</dt>
-                <dd class="col-sm-9">{{ $production->order->order_no ?? 'N/A' }}</dd>
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <strong>Order:</strong> {{ $production->order->order_no ?? 'N/A' }}
+                </div>
+                <div class="col-md-6">
+                    <strong>Department:</strong> {{ $production->department->name ?? 'N/A' }}
+                </div>
+            </div>
 
-                <dt class="col-sm-3">Department</dt>
-                <dd class="col-sm-9">{{ $production->department->name ?? 'N/A' }}</dd>
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <strong>Start Date:</strong> {{ \Carbon\Carbon::parse($production->start_date)->format('Y-m-d') }}
+                </div>
+                <div class="col-md-6">
+                    <strong>End Date:</strong> {{ $production->end_date ? \Carbon\Carbon::parse($production->end_date)->format('Y-m-d') : '-' }}
+                </div>
+            </div>
 
-                <dt class="col-sm-3">Start Date</dt>
-                <dd class="col-sm-9">{{ \Carbon\Carbon::parse($production->start_date)->format('Y-m-d') }}</dd>
-
-                <dt class="col-sm-3">End Date</dt>
-                <dd class="col-sm-9">{{ $production->end_date ? \Carbon\Carbon::parse($production->end_date)->format('Y-m-d') : '-' }}</dd>
-
-                <dt class="col-sm-3">Produced Quantity</dt>
-                <dd class="col-sm-9">{{ $production->completed_qty }}</dd>
-
-                <dt class="col-sm-3">Status</dt>
-                <dd class="col-sm-9">
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <strong>Produced Quantity:</strong> {{ $production->completed_qty }}
+                </div>
+                <div class="col-md-6">
+                    <strong>Status:</strong>
                     @switch($production->status)
                         @case('not_started')
                             <span class="badge bg-secondary">Not Started</span>
@@ -35,12 +41,14 @@
                             <span class="badge bg-success">Completed</span>
                             @break
                     @endswitch
-                </dd>
-            </dl>
+                </div>
+            </div>
         </div>
     </div>
 
-    <a href="{{ route('productions.index') }}" class="btn btn-secondary">Back to List</a>
-    <a href="{{ route('productions.edit', $production->id) }}" class="btn btn-warning">Edit Production</a>
+    <div class="d-flex gap-2">
+        <a href="{{ route('productions.index') }}" class="btn btn-secondary">Back to List</a>
+        <a href="{{ route('productions.edit', $production->id) }}" class="btn btn-warning">Edit Production</a>
+    </div>
 </div>
 @endsection

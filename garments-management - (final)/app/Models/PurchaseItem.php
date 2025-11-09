@@ -13,6 +13,10 @@ class PurchaseItem extends Model
         'purchase_order_id', 'material_id', 'supplier_id', 'quantity', 'unit_price', 'status'
     ];
 
+    protected $attributes = [
+    'status' => 'pending', // default value
+];
+
     /**
      * Relation: PurchaseItem belongs to Material
      */

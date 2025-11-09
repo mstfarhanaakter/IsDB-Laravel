@@ -27,8 +27,10 @@ Route::resource('shipments', ShipmentController::class);
 Route::resource('departments', DepartmentController::class);
 Route::resource('materials', MaterialController::class);
 Route::resource('purchases', PurchaseController::class);
-Route::resource('purchase-items', PurchaseItemController::class);
+// Route::resource('purchase-items', PurchaseItemController::class);
 Route::resource('purchase-orders', PurchaseOrderController::class);
+Route::resource('purchase-items', PurchaseItemController::class);
+
 
 
 

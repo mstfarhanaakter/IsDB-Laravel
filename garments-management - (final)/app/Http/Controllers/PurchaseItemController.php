@@ -56,8 +56,15 @@ class PurchaseItemController extends Controller
         $purchaseOrder->total_amount += ($item->quantity * $item->unit_price);
         $purchaseOrder->save();
 
-        return redirect()->route('purchase_items.index')->with('success', 'Purchase Item added to Pending Purchase Order successfully.');
+        return redirect()->route('purchase-items.index')->with('success', 'Purchase Item added to Pending Purchase Order successfully.');
     }
+
+    //show 
+    public function show(PurchaseItem $purchaseItem)
+{
+    return view('purchase_items.show', compact('purchaseItem'));
+}
+
 
     public function edit(PurchaseItem $purchaseItem)
     {
@@ -67,27 +74,31 @@ class PurchaseItemController extends Controller
     }
 
     public function update(Request $request, PurchaseItem $purchaseItem)
-    {
-        $request->validate([
-            'material_id' => 'required|exists:materials,id',
-            'supplier_id' => 'required|exists:suppliers,id',
-            'quantity' => 'required|numeric|min:0.01',
-            'unit_price' => 'required|numeric|min:0'
-        ]);
+{
+    $request->validate([
+        'material_id' => 'required|exists:materials,id',
+        'supplier_id' => 'required|exists:suppliers,id',
+        'quantity' => 'required|numeric',
+        'unit_price' => 'required|numeric',
+        'status' => 'required|in:pending,approved,rejected',
+    ]);
 
-        $purchaseItem->update($request->only(['material_id', 'supplier_id', 'quantity', 'unit_price']));
+    $purchaseItem->update([
+        'material_id' => $request->material_id,
+        'supplier_id' => $request->supplier_id,
+        'quantity' => $request->quantity,
+        'unit_price' => $request->unit_price,
+        'status' => $request->status, // এখানে status update হচ্ছে কি দেখুন
+    ]);
 
-        $purchaseOrder = $purchaseItem->purchaseOrder;
-        $total = $purchaseOrder->items()->sum(\DB::raw('quantity * unit_price'));
-        $purchaseOrder->update(['total_amount' => $total]);
+    return redirect()->route('purchase-items.index')->with('success', 'Purchase Item updated successfully.');
+}
 
-        return redirect()->route('purchase_items.index')->with('success', 'Purchase Item updated successfully.');
-    }
 
     public function destroy(PurchaseItem $purchaseItem)
     {
         $purchaseItem->delete();
-        return redirect()->route('purchase_items.index')->with('success', 'Purchase Item deleted successfully.');
+        return redirect()->route('purchase-items.index')->with('success', 'Purchase Item deleted successfully.');
     }
 
     public function updateOrderStatus(Request $request, $orderId)
