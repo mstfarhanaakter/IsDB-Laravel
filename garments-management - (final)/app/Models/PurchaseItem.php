@@ -10,10 +10,7 @@ class PurchaseItem extends Model
     use HasFactory;
 
     protected $fillable = [
-        'material_id',
-        'supplier_id',
-        'quantity',
-        'unit_price',
+        'purchase_order_id', 'material_id', 'supplier_id', 'quantity', 'unit_price', 'status'
     ];
 
     /**
@@ -22,6 +19,13 @@ class PurchaseItem extends Model
     public function material()
     {
         return $this->belongsTo(Material::class);
+    }
+
+/**
+     * Relation: PurchaseItem belongs to purchaseOrder
+     */
+     public function purchaseOrder() {
+        return $this->belongsTo(PurchaseOrder::class);
     }
 
     /**

@@ -3,97 +3,107 @@
 namespace App\Http\Controllers;
 
 use App\Models\PurchaseItem;
-use App\Models\Material;
+use App\Models\PurchaseOrder;
 use App\Models\Supplier;
+use App\Models\Material;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class PurchaseItemController extends Controller
 {
-    /**
-     * Display a listing of the purchase items.
-     */
     public function index()
     {
-        $purchaseItems = PurchaseItem::with(['material', 'supplier'])->get();
-        return view('purchase_items.index', compact('purchaseItems'));
+        $items = PurchaseItem::with('purchaseOrder')->get();
+        return view('purchase_items.index', compact('items'));
     }
 
-    /**
-     * Show the form for creating a new purchase item.
-     */
     public function create()
     {
-        $materials = Material::all();
         $suppliers = Supplier::all();
-
-        return view('purchase_items.create', compact('materials', 'suppliers'));
+        $materials = Material::all();
+        return view('purchase_items.create', compact('suppliers', 'materials'));
     }
 
-    /**
-     * Store a newly created purchase item in storage.
-     */
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'material_id' => 'required|exists:materials,id',
             'supplier_id' => 'required|exists:suppliers,id',
-            'quantity' => 'required|numeric|min:0',
-            'unit_price' => 'required|numeric|min:0',
+            'quantity' => 'required|numeric|min:0.01',
+            'unit_price' => 'required|numeric|min:0'
         ]);
 
-        PurchaseItem::create($validated);
+        $purchaseOrder = PurchaseOrder::firstOrCreate(
+            [
+                'supplier_id' => $request->supplier_id,
+                'status' => 'pending'
+            ],
+            [
+                'order_date' => now(),
+                'total_amount' => 0
+            ]
+        );
 
-        return redirect()->route('purchase-items.index')
-                         ->with('success', 'Purchase item created successfully.');
+        $item = PurchaseItem::create([
+            'material_id' => $request->material_id,
+            'supplier_id' => $request->supplier_id,
+            'quantity' => $request->quantity,
+            'unit_price' => $request->unit_price,
+            'purchase_order_id' => $purchaseOrder->id,
+            'status' => 'pending'
+        ]);
+
+        $purchaseOrder->total_amount += ($item->quantity * $item->unit_price);
+        $purchaseOrder->save();
+
+        return redirect()->route('purchase_items.index')->with('success', 'Purchase Item added to Pending Purchase Order successfully.');
     }
 
-    /**
-     * Display the specified purchase item.
-     */
-    public function show(PurchaseItem $purchaseItem)
-    {
-        $purchaseItem->load(['material', 'supplier']);
-        return view('purchase_items.show', compact('purchaseItem'));
-    }
-
-    /**
-     * Show the form for editing the specified purchase item.
-     */
     public function edit(PurchaseItem $purchaseItem)
     {
-        $materials = Material::all();
         $suppliers = Supplier::all();
-
-        return view('purchase_items.edit', compact('purchaseItem', 'materials', 'suppliers'));
+        $materials = Material::all();
+        return view('purchase_items.edit', compact('purchaseItem', 'suppliers', 'materials'));
     }
 
-    /**
-     * Update the specified purchase item in storage.
-     */
     public function update(Request $request, PurchaseItem $purchaseItem)
     {
-        $validated = $request->validate([
+        $request->validate([
             'material_id' => 'required|exists:materials,id',
             'supplier_id' => 'required|exists:suppliers,id',
-            'quantity' => 'required|numeric|min:0',
-            'unit_price' => 'required|numeric|min:0',
+            'quantity' => 'required|numeric|min:0.01',
+            'unit_price' => 'required|numeric|min:0'
         ]);
 
-        $purchaseItem->update($validated);
+        $purchaseItem->update($request->only(['material_id', 'supplier_id', 'quantity', 'unit_price']));
 
-        return redirect()->route('purchase-items.index')
-                         ->with('success', 'Purchase item updated successfully.');
+        $purchaseOrder = $purchaseItem->purchaseOrder;
+        $total = $purchaseOrder->items()->sum(\DB::raw('quantity * unit_price'));
+        $purchaseOrder->update(['total_amount' => $total]);
+
+        return redirect()->route('purchase_items.index')->with('success', 'Purchase Item updated successfully.');
     }
 
-    /**
-     * Remove the specified purchase item from storage.
-     */
     public function destroy(PurchaseItem $purchaseItem)
     {
         $purchaseItem->delete();
+        return redirect()->route('purchase_items.index')->with('success', 'Purchase Item deleted successfully.');
+    }
 
-        return redirect()->route('purchase-items.index')
-                         ->with('success', 'Purchase item deleted successfully.');
+    public function updateOrderStatus(Request $request, $orderId)
+    {
+        $purchaseOrder = PurchaseOrder::findOrFail($orderId);
+        $status = $request->status;
+
+        $purchaseOrder->status = $status;
+        $purchaseOrder->save();
+
+        if ($status === 'approved') {
+            $purchaseOrder->items()->update(['status' => 'approved']);
+        } elseif ($status === 'cancelled') {
+            $purchaseOrder->items()->update(['status' => 'rejected']);
+        }
+
+        return redirect()->back()->with('success', 'Purchase Order status updated successfully.');
     }
 }
