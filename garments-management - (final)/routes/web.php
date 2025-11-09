@@ -8,6 +8,7 @@ use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductionController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\PurchaseItemController;
 use App\Http\Controllers\ShipmentController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,7 @@ Route::resource('shipments', ShipmentController::class);
 Route::resource('departments', DepartmentController::class);
 Route::resource('materials', MaterialController::class);
 Route::resource('purchases', PurchaseController::class);
+Route::resource('purchase-items', PurchaseItemController::class);
 
 
 

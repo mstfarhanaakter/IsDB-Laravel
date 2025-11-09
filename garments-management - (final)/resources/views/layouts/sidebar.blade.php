@@ -70,7 +70,7 @@
       <ul class="pc-submenu">
         <li class="pc-item"><a class="pc-link" href="{{ route('suppliers.index') }}">All Suppliers</a></li>
         <li class="pc-item"><a class="pc-link" href="{{ route('materials.index') }}">Add Product</a></li>
-        <li class="pc-item"><a class="pc-link" href=" {{ route('purchases.index') }}">Purchase List</a></li>
+        <li class="pc-item"><a class="pc-link" href=" {{ route('purchase-items.index') }}">Purchase List</a></li>
        
         <li class="pc-item"><a class="pc-link" href="">Purchase Orders</a></li>
       </ul>
