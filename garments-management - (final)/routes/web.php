@@ -3,6 +3,7 @@
 
 
 use App\Http\Controllers\BuyerController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductionController;
 use App\Http\Controllers\ShipmentController;
@@ -21,6 +22,7 @@ Route::resource('orders', OrderController::class);
 Route::resource('productions', ProductionController::class);
 Route::resource('suppliers', SupplierController::class);
 Route::resource('shipments', ShipmentController::class);
+Route::resource('departments', DepartmentController::class);
 
 
 
