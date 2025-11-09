@@ -1,0 +1,3 @@
+database password: YL0soJ]3?r5fE8_[
+database name : farhanas_garments_system
+database username: farhanas_garments_system
