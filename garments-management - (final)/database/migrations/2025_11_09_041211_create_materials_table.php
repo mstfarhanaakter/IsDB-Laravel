@@ -12,12 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('materials', function (Blueprint $table) {
-        $table->id();
-        $table->string('name');
-        $table->string('unit');
-        $table->decimal('current_stock', 10, 2)->default(0);
-        $table->timestamps();
-    });
+    $table->id();
+    $table->foreignId('supplier_id')
+          ->nullable()               // required for 'set null'
+          ->constrained('suppliers')
+          ->onDelete('set null');    // set supplier_id to null if supplier deleted
+    $table->string('name');
+    $table->string('unit');
+    $table->decimal('current_stock', 10, 2)->default(0);
+    $table->timestamps();
+});
+
     }
 
     /**

@@ -8,5 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Supplier extends Model
 {   use HasFactory ;
      protected $fillable = ['name','contact','email','address'];
+     public function materials()
+    {
+        return $this->hasMany(Material::class);
+    }
     public function purchases() { return $this->hasMany(Purchase::class); }
 }

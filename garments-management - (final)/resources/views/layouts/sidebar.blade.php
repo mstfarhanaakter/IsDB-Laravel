@@ -52,7 +52,7 @@
           <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-building-factory"></i></span><span class="pc-mtext">Production Management</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>
           <ul class="pc-submenu">
             <li class="pc-item"><a class="pc-link" href="{{ route('productions.index') }}">Production Lines</a></li>
-            <li class="pc-item"><a class="pc-link" href="">New Production Entry</a></li>
+            <li class="pc-item"><a class="pc-link" href="{{ route('productions.create') }}">New Production Entry</a></li>
             <li class="pc-item"><a class="pc-link" href="">Work Progress</a></li>
             <li class="pc-item"><a class="pc-link" href="">Defect Report</a></li>
             <li class="pc-item"><a class="pc-link" href="#!">Completed Production</a></li>
@@ -68,8 +68,8 @@
         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
       </a>
       <ul class="pc-submenu">
-        <li class="pc-item"><a class="pc-link" href="">All Suppliers</a></li>
-        <li class="pc-item"><a class="pc-link" href="">Add Product</a></li>
+        <li class="pc-item"><a class="pc-link" href="{{ route('suppliers.index') }}">All Suppliers</a></li>
+        <li class="pc-item"><a class="pc-link" href="{{ route('materials.index') }}">Add Product</a></li>
         <li class="pc-item"><a class="pc-link" href="">Purchase Orders</a></li>
       </ul>
     </li>
