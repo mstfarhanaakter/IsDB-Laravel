@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2025 at 08:20 PM
+-- Generation Time: Nov 10, 2025 at 08:12 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,7 +43,30 @@ CREATE TABLE `buyers` (
 --
 
 INSERT INTO `buyers` (`id`, `name`, `company_name`, `contact_no`, `email`, `address`, `created_at`, `updated_at`) VALUES
-(1, 'Shetu', 'Sunshine Cloth Store', '01757383745', 'shetu@gmail.com', 'Mirpur 10', '2025-11-09 13:15:11', '2025-11-09 13:15:11');
+(1, 'Farhana Shetu', 'Sunshine cloth store', '0123654789', 'farhana@gmail.com', 'Mirpur 10', '2025-11-09 23:39:39', '2025-11-09 23:39:39'),
+(2, 'Sharmin Akter', 'Sharmin Store', '01788219092', 'sharmin@gmail.com', 'Azimpur', '2025-11-10 00:15:35', '2025-11-10 00:15:35');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `deliveries`
+--
+
+CREATE TABLE `deliveries` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `order_id` bigint(20) UNSIGNED NOT NULL,
+  `delivery_date` date NOT NULL,
+  `status` varchar(255) NOT NULL DEFAULT 'pending',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `deliveries`
+--
+
+INSERT INTO `deliveries` (`id`, `order_id`, `delivery_date`, `status`, `created_at`, `updated_at`) VALUES
+(1, 2, '2025-11-10', 'delivered', '2025-11-10 00:12:31', '2025-11-10 00:13:34');
 
 -- --------------------------------------------------------
 
@@ -58,6 +81,17 @@ CREATE TABLE `departments` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `departments`
+--
+
+INSERT INTO `departments` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'Design & Development', 'Sketches, patterns, samples', '2025-11-10 00:39:59', '2025-11-10 00:39:59'),
+(2, 'Cutting Department', 'Fabric cutting', '2025-11-10 00:40:16', '2025-11-10 00:40:16'),
+(3, 'Sewing / Stitching Department', 'Assembly of garments', '2025-11-10 00:41:27', '2025-11-10 00:41:27'),
+(4, 'Finishing / Quality Control', 'Trimming, inspection', '2025-11-10 00:41:49', '2025-11-10 00:41:49'),
+(5, 'Packing & Dispatch', 'Packing garments for shipment', '2025-11-10 00:42:03', '2025-11-10 00:42:03');
 
 -- --------------------------------------------------------
 
@@ -98,7 +132,7 @@ CREATE TABLE `materials` (
 --
 
 INSERT INTO `materials` (`id`, `supplier_id`, `name`, `unit`, `current_stock`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Cotton', 'piece', 20000.00, '2025-11-09 11:59:59', '2025-11-09 12:59:12');
+(1, 1, 'Cotton', 'KG', 200.00, '2025-11-10 00:21:28', '2025-11-10 00:21:47');
 
 -- --------------------------------------------------------
 
@@ -119,16 +153,18 @@ CREATE TABLE `migrations` (
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2025_11_09_041048_create_buyers_table', 1),
 (2, '2025_11_09_041110_create_orders_table', 1),
-(3, '2025_11_09_041120_create_order_items_table', 1),
-(4, '2025_11_09_041143_create_departments_table', 1),
-(5, '2025_11_09_041152_create_productions_table', 1),
-(6, '2025_11_09_041202_create_suppliers_table', 1),
-(7, '2025_11_09_041211_create_materials_table', 1),
-(8, '2025_11_09_041222_create_purchases_table', 1),
-(9, '2025_11_09_041239_create_employees_table', 1),
-(10, '2025_11_09_041259_create_shipments_table', 1),
-(11, '2025_11_09_164409_create_purchase_orders_table', 1),
-(12, '2025_11_09_175242_create_purchase_items_table', 1);
+(3, '2025_11_09_041143_create_departments_table', 1),
+(4, '2025_11_09_041152_create_productions_table', 1),
+(5, '2025_11_09_041202_create_suppliers_table', 1),
+(6, '2025_11_09_041211_create_materials_table', 1),
+(7, '2025_11_09_041222_create_purchases_table', 1),
+(8, '2025_11_09_041239_create_employees_table', 1),
+(9, '2025_11_09_164409_create_purchase_orders_table', 1),
+(10, '2025_11_09_175242_create_purchase_items_table', 1),
+(11, '2025_11_10_050751_create_product_categories_table', 1),
+(12, '2025_11_10_050805_create_products_table', 1),
+(13, '2025_11_10_050828_create_order_items_table', 1),
+(14, '2025_11_10_050840_create_deliveries_table', 1);
 
 -- --------------------------------------------------------
 
@@ -139,7 +175,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 CREATE TABLE `orders` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `buyer_id` bigint(20) UNSIGNED NOT NULL,
-  `order_no` varchar(255) NOT NULL,
+  `order_number` varchar(255) NOT NULL,
   `order_date` date NOT NULL,
   `delivery_date` date DEFAULT NULL,
   `total_qty` int(11) NOT NULL DEFAULT 0,
@@ -152,8 +188,9 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `buyer_id`, `order_no`, `order_date`, `delivery_date`, `total_qty`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'ORD-1001', '2025-11-10', '2025-12-31', 5000, 'pending', '2025-11-09 13:17:33', '2025-11-09 13:17:33');
+INSERT INTO `orders` (`id`, `buyer_id`, `order_number`, `order_date`, `delivery_date`, `total_qty`, `status`, `created_at`, `updated_at`) VALUES
+(2, 1, 'ORD-1001', '2025-11-10', '2025-11-12', 3000, 'delivered', '2025-11-09 23:55:07', '2025-11-10 00:14:28'),
+(3, 2, 'ORD-1002', '2025-11-10', '2025-11-11', 20000, 'pending', '2025-11-10 00:16:28', '2025-11-10 00:16:28');
 
 -- --------------------------------------------------------
 
@@ -164,14 +201,19 @@ INSERT INTO `orders` (`id`, `buyer_id`, `order_no`, `order_date`, `delivery_date
 CREATE TABLE `order_items` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `order_id` bigint(20) UNSIGNED NOT NULL,
-  `style_no` varchar(255) NOT NULL,
-  `color` varchar(255) NOT NULL,
-  `size` varchar(255) NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
   `quantity` int(11) NOT NULL,
-  `unit_price` decimal(10,2) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `order_items`
+--
+
+INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
+(2, 2, 1, 50000, 180.00, '2025-11-09 23:55:27', '2025-11-09 23:55:27');
 
 -- --------------------------------------------------------
 
@@ -190,6 +232,58 @@ CREATE TABLE `productions` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `productions`
+--
+
+INSERT INTO `productions` (`id`, `order_id`, `department_id`, `start_date`, `end_date`, `completed_qty`, `status`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, '2025-11-10', '2025-11-24', 1000, 'ongoing', '2025-11-10 00:42:44', '2025-11-10 00:42:44');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `description` text DEFAULT NULL,
+  `stock_quantity` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `category_id`, `name`, `price`, `description`, `stock_quantity`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Full Sleve', 140.00, 'Good quality', 20000, '2025-11-09 23:40:32', '2025-11-09 23:40:32');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_categories`
+--
+
+CREATE TABLE `product_categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `product_categories`
+--
+
+INSERT INTO `product_categories` (`id`, `name`, `image`, `created_at`, `updated_at`) VALUES
+(1, 'T-shirt', '1762753193_shirt.jpg', '2025-11-09 23:39:53', '2025-11-09 23:39:53');
 
 -- --------------------------------------------------------
 
@@ -230,7 +324,7 @@ CREATE TABLE `purchase_items` (
 --
 
 INSERT INTO `purchase_items` (`id`, `material_id`, `supplier_id`, `quantity`, `unit_price`, `status`, `purchase_order_id`, `created_at`, `updated_at`) VALUES
-(2, 1, 1, 20000.00, 100.00, 'approved', 1, '2025-11-09 12:37:47', '2025-11-09 12:59:12');
+(1, 1, 1, 200.00, 120.00, 'pending', 1, '2025-11-10 00:21:47', '2025-11-10 00:21:47');
 
 -- --------------------------------------------------------
 
@@ -254,24 +348,7 @@ CREATE TABLE `purchase_orders` (
 --
 
 INSERT INTO `purchase_orders` (`id`, `supplier_id`, `order_date`, `status`, `total_amount`, `remarks`, `created_at`, `updated_at`) VALUES
-(1, 1, '2025-11-09', 'pending', 2000000.00, NULL, '2025-11-09 12:00:14', '2025-11-09 12:37:54');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `shipments`
---
-
-CREATE TABLE `shipments` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `order_id` bigint(20) UNSIGNED NOT NULL,
-  `shipment_date` date NOT NULL,
-  `carrier_name` varchar(255) DEFAULT NULL,
-  `tracking_no` varchar(255) DEFAULT NULL,
-  `delivery_status` enum('pending','in_transit','delivered') NOT NULL DEFAULT 'pending',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+(1, 1, '2025-11-10', 'pending', 48000.00, NULL, '2025-11-10 00:21:47', '2025-11-10 00:21:47');
 
 -- --------------------------------------------------------
 
@@ -294,7 +371,7 @@ CREATE TABLE `suppliers` (
 --
 
 INSERT INTO `suppliers` (`id`, `name`, `contact`, `email`, `address`, `created_at`, `updated_at`) VALUES
-(1, 'Murad Hossain', '01758170484', 'murad@gmail.com', 'Colony Road, Chittagong', '2025-11-09 11:59:39', '2025-11-09 11:59:39');
+(1, 'Rafia', '01755875874', 'rafia@gmail.com', 'Hazaribagh', '2025-11-10 00:21:11', '2025-11-10 00:21:11');
 
 --
 -- Indexes for dumped tables
@@ -306,6 +383,13 @@ INSERT INTO `suppliers` (`id`, `name`, `contact`, `email`, `address`, `created_a
 ALTER TABLE `buyers`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `buyers_email_unique` (`email`);
+
+--
+-- Indexes for table `deliveries`
+--
+ALTER TABLE `deliveries`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `deliveries_order_id_foreign` (`order_id`);
 
 --
 -- Indexes for table `departments`
@@ -340,7 +424,7 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `orders_order_no_unique` (`order_no`),
+  ADD UNIQUE KEY `orders_order_number_unique` (`order_number`),
   ADD KEY `orders_buyer_id_foreign` (`buyer_id`);
 
 --
@@ -348,7 +432,8 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `order_items`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `order_items_order_id_foreign` (`order_id`);
+  ADD KEY `order_items_order_id_foreign` (`order_id`),
+  ADD KEY `order_items_product_id_foreign` (`product_id`);
 
 --
 -- Indexes for table `productions`
@@ -357,6 +442,19 @@ ALTER TABLE `productions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `productions_order_id_foreign` (`order_id`),
   ADD KEY `productions_department_id_foreign` (`department_id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `products_category_id_foreign` (`category_id`);
+
+--
+-- Indexes for table `product_categories`
+--
+ALTER TABLE `product_categories`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `purchases`
@@ -383,13 +481,6 @@ ALTER TABLE `purchase_orders`
   ADD KEY `purchase_orders_supplier_id_foreign` (`supplier_id`);
 
 --
--- Indexes for table `shipments`
---
-ALTER TABLE `shipments`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `shipments_order_id_foreign` (`order_id`);
-
---
 -- Indexes for table `suppliers`
 --
 ALTER TABLE `suppliers`
@@ -403,13 +494,19 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT for table `buyers`
 --
 ALTER TABLE `buyers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `deliveries`
+--
+ALTER TABLE `deliveries`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `employees`
@@ -427,25 +524,37 @@ ALTER TABLE `materials`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `productions`
 --
 ALTER TABLE `productions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `product_categories`
+--
+ALTER TABLE `product_categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `purchases`
@@ -457,19 +566,13 @@ ALTER TABLE `purchases`
 -- AUTO_INCREMENT for table `purchase_items`
 --
 ALTER TABLE `purchase_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `purchase_orders`
 --
 ALTER TABLE `purchase_orders`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `shipments`
---
-ALTER TABLE `shipments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `suppliers`
@@ -480,6 +583,12 @@ ALTER TABLE `suppliers`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `deliveries`
+--
+ALTER TABLE `deliveries`
+  ADD CONSTRAINT `deliveries_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `employees`
@@ -503,7 +612,8 @@ ALTER TABLE `orders`
 -- Constraints for table `order_items`
 --
 ALTER TABLE `order_items`
-  ADD CONSTRAINT `order_items_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `order_items_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `order_items_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `productions`
@@ -511,6 +621,12 @@ ALTER TABLE `order_items`
 ALTER TABLE `productions`
   ADD CONSTRAINT `productions_department_id_foreign` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `productions_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `products`
+--
+ALTER TABLE `products`
+  ADD CONSTRAINT `products_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `product_categories` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `purchases`
@@ -532,12 +648,6 @@ ALTER TABLE `purchase_items`
 --
 ALTER TABLE `purchase_orders`
   ADD CONSTRAINT `purchase_orders_supplier_id_foreign` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `shipments`
---
-ALTER TABLE `shipments`
-  ADD CONSTRAINT `shipments_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
