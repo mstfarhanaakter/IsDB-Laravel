@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Delivery extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'order_id',
+        'delivery_date',
+        'status',
+    ];
+
+    
+    protected $casts = [
+        'delivery_date' => 'date',
+    ];
+
+    // Relationship: a delivery belongs to an order
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+}
