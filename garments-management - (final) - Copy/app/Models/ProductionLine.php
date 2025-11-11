@@ -13,4 +13,9 @@ class ProductionLine extends Model
         'name',
         'description',
     ];
+
+    public function productions()
+    {
+        return $this->hasMany(Production::class, 'line_id');
+    }
 }

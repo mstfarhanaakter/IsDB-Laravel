@@ -9,6 +9,8 @@ use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductionController;
+use App\Http\Controllers\ProductionDefectController;
+use App\Http\Controllers\ProductionLineController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PurchaseItemController;
 use App\Http\Controllers\PurchaseOrderController;
@@ -20,6 +22,11 @@ Route::get('/', function () {
     return view('dashboard');
     
 });
+
+
+// add custom work progress route
+Route::get('/productions/work-progress', [ProductionController::class, 'workProgress'])
+     ->name('productions.work-progress');
 
 Route::get('/buyers/orders', [BuyerController::class, 'showOrders'])->name('buyers.orders');
 
@@ -39,6 +46,8 @@ Route::resource('categories', ProductCategoryController::class);
 Route::resource('products', ProductController::class);
 Route::resource('deliveries', DeliveryController::class);
 Route::resource('order_items', OrderItemController::class);
+Route::resource('production-defects', ProductionDefectController::class);
+Route::resource('production-lines', ProductionLineController::class);
 
 
 
