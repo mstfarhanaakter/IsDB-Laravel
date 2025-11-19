@@ -56,4 +56,10 @@ class Employee extends Model
     {
         return $query->where('department_id', $deptId);
     }
+
+     public function salaries()
+    {
+        return $this->hasMany(EmployeeSalary::class);
+    }
+
 }

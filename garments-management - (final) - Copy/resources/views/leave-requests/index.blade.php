@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container mt-3">
 
     <div class="card shadow-sm border-0">
         <div class="card-body">
 
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h3 class="fw-bold m-0">Leave Requests</h3>
-                <a href="{{ route('leave_requests.create') }}" class="btn btn-primary">
+                <a href="{{ route('leave-requests.create') }}" class="btn btn-primary">
                     <i class="bi bi-plus-circle"></i> Add Leave Request
                 </a>
             </div>
@@ -21,13 +21,13 @@
                 <table class="table table-hover table-bordered align-middle">
                     <thead class="table-dark">
                         <tr>
-                            <th width="50">ID</th>
+                            <th>ID</th>
                             <th>Employee</th>
                             <th>Start Date</th>
                             <th>End Date</th>
                             <th>Reason</th>
                             <th>Status</th>
-                            <th>Actions</th>
+                            <th width="200">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,8 +35,7 @@
                             <tr>
                                 <td>{{ $leave->id }}</td>
                                 <td class="fw-semibold">
-                                    {{ $leave->employee->first_name ?? 'N/A' }} 
-                                    {{ $leave->employee->last_name ?? '' }}
+                                    {{ $leave->employee->first_name ?? 'N/A' }} {{ $leave->employee->last_name ?? '' }}
                                 </td>
                                 <td>{{ \Carbon\Carbon::parse($leave->start_date)->format('d M, Y') }}</td>
                                 <td>{{ \Carbon\Carbon::parse($leave->end_date)->format('d M, Y') }}</td>
@@ -53,12 +52,9 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('leave_requests.show', $leave->id) }}" 
-                                       class="btn btn-sm btn-outline-info">View</a>
-                                    <a href="{{ route('leave_requests.edit', $leave->id) }}" 
-                                       class="btn btn-sm btn-outline-warning">Edit</a>
-
-                                    <form action="{{ route('leave_requests.destroy', $leave->id) }}" 
+                                    <a href="{{ route('leave-requests.show', $leave->id) }}" class="btn btn-sm btn-outline-info">View</a>
+                                    <a href="{{ route('leave-requests.edit', $leave->id) }}" class="btn btn-sm btn-outline-warning">Edit</a>
+                                    <form action="{{ route('leave-requests.destroy', $leave->id) }}" 
                                           method="POST" class="d-inline" 
                                           onsubmit="return confirm('Are you sure you want to delete this leave request?')">
                                         @csrf

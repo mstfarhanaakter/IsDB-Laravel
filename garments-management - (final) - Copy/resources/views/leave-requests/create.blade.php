@@ -4,9 +4,8 @@
 <div class="container">
     <h2 class="mb-4">Add Leave Request</h2>
 
-    <form action="{{ route('leave_requests.store') }}" method="POST">
+    <form action="{{ route('leave-requests.store') }}" method="POST">
         @csrf
-
         <div class="row">
 
             <div class="col-md-6 mb-3">
@@ -14,9 +13,7 @@
                 <select name="employee_id" class="form-control" required>
                     <option value="">Select Employee</option>
                     @foreach($employees as $employee)
-                        <option value="{{ $employee->id }}">
-                            {{ $employee->first_name }} {{ $employee->last_name }}
-                        </option>
+                        <option value="{{ $employee->id }}">{{ $employee->first_name }} {{ $employee->last_name }}</option>
                     @endforeach
                 </select>
             </div>

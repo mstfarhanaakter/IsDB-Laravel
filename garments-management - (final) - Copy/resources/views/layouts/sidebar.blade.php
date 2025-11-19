@@ -101,8 +101,13 @@
             <li class="pc-item"><a class="pc-link" href="{{ route('departments.index') }}">Departments</a></li>
             <li class="pc-item"><a class="pc-link" href="{{ route('employees.index') }}">Manage Employees</a></li> 
             <li class="pc-item"><a class="pc-link" href="{{ route('attendances.index') }}">Attenence</a></li>
-            <li class="pc-item"><a class="pc-link" href="#!">Salary Management</a></li>
-            <li class="pc-item"><a class="pc-link" href="#!">Leave Request</a></li>
+           
+            <li class="pc-item"><a class="pc-link" href="{{ route('leave-requests.index') }}">Leave Request</a></li>
+            <li class="pc-item"><a class="pc-link" href="">Salary Setting</a></li>
+            <li class="pc-item"><a class="pc-link" href="{{ route('employee-salaries.index') }}">Employee Salary</a></li>
+             <li class="pc-item"><a class="pc-link" href="{{ route('salaries.index') }}">Salary Management</a></li>
+
+            
           </ul>
         </li>
 

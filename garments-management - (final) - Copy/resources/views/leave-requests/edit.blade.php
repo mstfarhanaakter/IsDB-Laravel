@@ -4,18 +4,16 @@
 <div class="container">
     <h2 class="mb-4">Edit Leave Request</h2>
 
-    <form action="{{ route('leave_requests.update', $leaveRequest->id) }}" method="POST">
+    <form action="{{ route('leave-requests.update', $leaveRequest->id) }}" method="POST">
         @csrf
         @method('PUT')
-
         <div class="row">
 
             <div class="col-md-6 mb-3">
                 <label>Employee *</label>
                 <select name="employee_id" class="form-control" required>
                     @foreach($employees as $employee)
-                        <option value="{{ $employee->id }}" 
-                            {{ $leaveRequest->employee_id == $employee->id ? 'selected' : '' }}>
+                        <option value="{{ $employee->id }}" {{ $leaveRequest->employee_id == $employee->id ? 'selected' : '' }}>
                             {{ $employee->first_name }} {{ $employee->last_name }}
                         </option>
                     @endforeach

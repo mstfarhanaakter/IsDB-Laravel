@@ -12,7 +12,7 @@
             <p><strong>Reason:</strong> {{ $leaveRequest->reason }}</p>
             <p><strong>Status:</strong> {{ $leaveRequest->status }}</p>
 
-            <a href="{{ route('leave_requests.index') }}" class="btn btn-secondary mt-3">Back to List</a>
+            <a href="{{ route('leave-requests.index') }}" class="btn btn-secondary mt-3">Back to List</a>
         </div>
     </div>
 </div>
