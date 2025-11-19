@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\BuyerController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\DepartmentController;
@@ -50,6 +51,7 @@ Route::resource('order_items', OrderItemController::class);
 Route::resource('production-defects', ProductionDefectController::class);
 Route::resource('production-lines', ProductionLineController::class);
 Route::resource('employees', EmployeeController::class);
+Route::resource('attendances', AttendanceController::class);
 
 
 
