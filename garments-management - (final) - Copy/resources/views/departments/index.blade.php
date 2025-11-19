@@ -43,6 +43,6 @@
         </tbody>
     </table>
 
-    {{ $departments->links() }}
+   
 </div>
 @endsection
