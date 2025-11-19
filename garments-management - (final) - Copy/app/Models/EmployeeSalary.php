@@ -9,7 +9,7 @@ class EmployeeSalary extends Model
 {
     use HasFactory;
 
-    // Fillable fields (so you can mass-assign)
+    // 🔹 Mass assignable fields
     protected $fillable = [
         'employee_id',
         'month',
@@ -24,22 +24,15 @@ class EmployeeSalary extends Model
         'net_salary',
     ];
 
-    // Optional: cast some fields to numeric types
-    protected $casts = [
-        'basic' => 'double',
-        'house_rent' => 'double',
-        'medical' => 'double',
-        'transport' => 'double',
-        'overtime_amount' => 'double',
-        'absent_deduction' => 'double',
-        'gross_salary' => 'double',
-        'net_salary' => 'double',
-        'year' => 'integer',
-    ];
-
-    // Relation to Employee
+    // 🔹 Employee relationship
     public function employee()
     {
         return $this->belongsTo(Employee::class);
+    }
+
+    // 🔹 Accessor to get month name from month number
+    public function getMonthNameAttribute()
+    {
+        return \Carbon\Carbon::create()->month($this->month)->format('F');
     }
 }

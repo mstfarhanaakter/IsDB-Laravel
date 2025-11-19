@@ -4,86 +4,78 @@
 <div class="container">
     <h2>Edit Employee Salary</h2>
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                   <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
     <form action="{{ route('employee-salaries.update', $employeeSalary->id) }}" method="POST">
         @csrf
         @method('PUT')
 
-        <div class="mb-3">
+        <div class="form-group mb-2">
             <label>Employee</label>
-            <select name="employee_id" class="form-control">
-                <option value="">Select Employee</option>
+            <select name="employee_id" class="form-control" required>
                 @foreach($employees as $employee)
                     <option value="{{ $employee->id }}" {{ $employeeSalary->employee_id == $employee->id ? 'selected' : '' }}>
-                        {{ $employee->name }}
+                        {{ $employee->first_name }} {{ $employee->last_name }}
                     </option>
                 @endforeach
             </select>
         </div>
 
-        <!-- Repeat input fields like create.blade.php but use $employeeSalary values -->
-
-        <div class="mb-3">
+        <div class="form-group mb-2">
             <label>Month</label>
-            <input type="text" name="month" class="form-control" value="{{ $employeeSalary->month }}">
+            <select name="month" class="form-control" required>
+                @for($i=1; $i<=12; $i++)
+                    <option value="{{ $i }}" {{ $employeeSalary->month == $i ? 'selected' : '' }}>
+                        {{ \Carbon\Carbon::createFromDate(null, $i, 1)->format('F') }}
+                    </option>
+                @endfor
+            </select>
         </div>
 
-        <div class="mb-3">
+        <div class="form-group mb-2">
             <label>Year</label>
-            <input type="number" name="year" class="form-control" value="{{ $employeeSalary->year }}">
+            <input type="number" name="year" class="form-control" value="{{ $employeeSalary->year }}" required>
         </div>
 
-        <div class="mb-3">
+        <div class="form-group mb-2">
             <label>Basic</label>
-            <input type="number" step="0.01" name="basic" class="form-control" value="{{ $employeeSalary->basic }}">
+            <input type="number" step="0.01" name="basic" class="form-control" value="{{ $employeeSalary->basic }}" required>
         </div>
 
-        <div class="mb-3">
+        <div class="form-group mb-2">
             <label>House Rent</label>
-            <input type="number" step="0.01" name="house_rent" class="form-control" value="{{ $employeeSalary->house_rent }}">
+            <input type="number" step="0.01" name="house_rent" class="form-control" value="{{ $employeeSalary->house_rent }}" required>
         </div>
 
-        <div class="mb-3">
+        <div class="form-group mb-2">
             <label>Medical</label>
-            <input type="number" step="0.01" name="medical" class="form-control" value="{{ $employeeSalary->medical }}">
+            <input type="number" step="0.01" name="medical" class="form-control" value="{{ $employeeSalary->medical }}" required>
         </div>
 
-        <div class="mb-3">
+        <div class="form-group mb-2">
             <label>Transport</label>
-            <input type="number" step="0.01" name="transport" class="form-control" value="{{ $employeeSalary->transport }}">
+            <input type="number" step="0.01" name="transport" class="form-control" value="{{ $employeeSalary->transport }}" required>
         </div>
 
-        <div class="mb-3">
+        <div class="form-group mb-2">
             <label>Overtime Amount</label>
             <input type="number" step="0.01" name="overtime_amount" class="form-control" value="{{ $employeeSalary->overtime_amount }}">
         </div>
 
-        <div class="mb-3">
+        <div class="form-group mb-2">
             <label>Absent Deduction</label>
             <input type="number" step="0.01" name="absent_deduction" class="form-control" value="{{ $employeeSalary->absent_deduction }}">
         </div>
 
-        <div class="mb-3">
+        <div class="form-group mb-2">
             <label>Gross Salary</label>
-            <input type="number" step="0.01" name="gross_salary" class="form-control" value="{{ $employeeSalary->gross_salary }}">
+            <input type="number" step="0.01" name="gross_salary" class="form-control" value="{{ $employeeSalary->gross_salary }}" required>
         </div>
 
-        <div class="mb-3">
+        <div class="form-group mb-2">
             <label>Net Salary</label>
-            <input type="number" step="0.01" name="net_salary" class="form-control" value="{{ $employeeSalary->net_salary }}">
+            <input type="number" step="0.01" name="net_salary" class="form-control" value="{{ $employeeSalary->net_salary }}" required>
         </div>
 
-        <button class="btn btn-success">Update</button>
-        <a href="{{ route('employee-salaries.index') }}" class="btn btn-secondary">Cancel</a>
+        <button class="btn btn-success mt-2">Update</button>
     </form>
 </div>
 @endsection

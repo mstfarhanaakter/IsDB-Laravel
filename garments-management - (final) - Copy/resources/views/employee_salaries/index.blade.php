@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-5">
+<div class="container mt-3">
 
     <div class="card shadow-sm border-0">
         <div class="card-body">
@@ -21,19 +21,21 @@
                 <table class="table table-hover table-bordered align-middle">
                     <thead class="table-dark">
                         <tr>
+                            <th>#</th>
                             <th>Employee</th>
                             <th>Month</th>
                             <th>Year</th>
                             <th>Gross Salary</th>
                             <th>Net Salary</th>
-                            <th width="200">Actions</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($salaries as $salary)
                             <tr>
-                                <td class="fw-semibold">{{ $salary->employee->name ?? 'N/A' }}</td>
-                                <td>{{ \Carbon\Carbon::createFromDate($salary->year, $salary->month, 1)->format('F') }}</td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td class="fw-semibold">{{ $salary->employee->first_name }} {{ $salary->employee->last_name }}</td>
+                                <td>{{ \Carbon\Carbon::createFromDate(null, $salary->month, 1)->format('F') }}</td>
                                 <td>{{ $salary->year }}</td>
                                 <td>{{ number_format($salary->gross_salary, 2) }}</td>
                                 <td>{{ number_format($salary->net_salary, 2) }}</td>
@@ -51,7 +53,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="text-center text-muted">No salary records found.</td>
+                                <td colspan="7" class="text-center text-muted">No salary records found.</td>
                             </tr>
                         @endforelse
                     </tbody>

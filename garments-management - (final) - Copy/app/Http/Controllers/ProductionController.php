@@ -13,7 +13,7 @@ class ProductionController extends Controller
     // List all productions
     public function index()
     {
-        $productions = Production::with(['order', 'line', 'defects'])->get();
+        $productions = Production::with(['order', 'line'])->get();
         return view('productions.index', compact('productions'));
     }
 
@@ -48,7 +48,7 @@ class ProductionController extends Controller
     // Show single production
     public function show(Production $production)
     {
-        $production->load(['order', 'line', 'defects']);
+        $production->load(['order', 'line']);
         return view('productions.show', compact('production'));
     }
 
@@ -88,25 +88,34 @@ class ProductionController extends Controller
                          ->with('success', 'Production record deleted successfully.');
     }
 
+    // Work Progress: Line-wise & Order-wise
     public function workProgress()
     {
-        $lines = ProductionLine::with('productions')->get();
+        $lines = ProductionLine::with('productions.order')->get();
         $progressData = [];
 
         foreach ($lines as $line) {
-            $totalPlanned = $line->productions->sum('planned_qty') ?? 0;
-            $totalProduced = $line->productions->sum('produced_qty') ?? 0;
-            $totalDefect = $line->productions->sum('defect_qty') ?? 0;
-
-            $progress = $totalPlanned > 0 ? (($totalProduced - $totalDefect) / $totalPlanned) * 100 : 0;
-
-            $progressData[] = [
+            $lineData = [
                 'line_name' => $line->name,
-                'planned' => $totalPlanned,
-                'produced' => $totalProduced,
-                'defect' => $totalDefect,
-                'progress' => round($progress, 2),
+                'orders' => []
             ];
+
+            foreach ($line->productions as $production) {
+                $planned = $production->planned_qty;
+                $produced = $production->produced_qty;
+                $defect = $production->defect_qty;
+                $progress = $planned > 0 ? (($produced - $defect) / $planned) * 100 : 0;
+
+                $lineData['orders'][] = [
+                    'order_no' => $production->order->order_number, // ensure order table has 'order_no'
+                    'planned' => $planned,
+                    'produced' => $produced,
+                    'defect' => $defect,
+                    'progress' => round($progress, 2),
+                ];
+            }
+
+            $progressData[] = $lineData;
         }
 
         return view('productions.work_progress', compact('progressData'));

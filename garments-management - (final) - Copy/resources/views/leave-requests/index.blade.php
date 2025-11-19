@@ -27,7 +27,7 @@
                             <th>End Date</th>
                             <th>Reason</th>
                             <th>Status</th>
-                            <th width="200">Actions</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -9,12 +9,9 @@ class ProductionDefect extends Model
 {
     use HasFactory;
 
-    // Table name (optional if Laravel naming conventions are followed)
-    protected $table = 'production_defects';
-
-    // Mass assignable fields
     protected $fillable = [
-        'production_id',
+        'productions_line_id',
+        'order_id',
         'defect_type',
         'defect_qty',
         'reported_by',
@@ -23,11 +20,13 @@ class ProductionDefect extends Model
         'status',
     ];
 
-    /**
-     * Relationship with Production
-     */
-    public function production()
+    public function productionLine()
     {
-        return $this->belongsTo(Production::class);
+        return $this->belongsTo(ProductionLine::class, 'productions_line_id');
+    }
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
     }
 }

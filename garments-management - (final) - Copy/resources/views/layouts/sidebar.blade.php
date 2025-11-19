@@ -57,8 +57,8 @@
           <ul class="pc-submenu">
             <li class="pc-item"><a class="pc-link" href="{{ route('production-lines.index') }}">Production Lines</a></li>
             <li class="pc-item"><a class="pc-link" href="{{ route('productions.index') }}">New Production Entry</a></li>
-            <li class="pc-item"><a class="pc-link" href="{{ route('productions.work-progress') }}">Work Progress</a></li>
-            <li class="pc-item"><a class="pc-link" href="{{ route('production-defects.index') }}">Defect Report</a></li>
+            <li class="pc-item"><a class="pc-link" href="{{ route('productions.work_progress') }}">Work Progress</a></li>
+            <li class="pc-item"><a class="pc-link" href="{{ route('production_defects.index') }}">Defect Report</a></li>
             <li class="pc-item"><a class="pc-link" href="#!">Completed Production</a></li>
           </ul>
         </li>
@@ -103,9 +103,9 @@
             <li class="pc-item"><a class="pc-link" href="{{ route('attendances.index') }}">Attenence</a></li>
            
             <li class="pc-item"><a class="pc-link" href="{{ route('leave-requests.index') }}">Leave Request</a></li>
-            <li class="pc-item"><a class="pc-link" href="">Salary Setting</a></li>
-            <li class="pc-item"><a class="pc-link" href="{{ route('employee-salaries.index') }}">Employee Salary</a></li>
-             <li class="pc-item"><a class="pc-link" href="{{ route('salaries.index') }}">Salary Management</a></li>
+            <!-- <li class="pc-item"><a class="pc-link" href="">Salary Setting</a></li> -->
+            <!-- <li class="pc-item"><a class="pc-link" href="{{ route('salaries.index') }}">Employee Salary</a></li> -->
+             <li class="pc-item"><a class="pc-link" href="{{ route('employee-salaries.index') }}">Salary Management</a></li>
 
             
           </ul>

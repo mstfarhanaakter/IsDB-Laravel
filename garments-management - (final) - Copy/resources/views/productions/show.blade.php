@@ -2,21 +2,46 @@
 
 @section('content')
 <div class="container">
-    <h1>Production Details</h1>
+    <h2 class="mb-4">Production Details</h2>
+    <a href="{{ route('productions.index') }}" class="btn btn-secondary mb-3">Back to Productions</a>
 
-    <div class="card">
-        <div class="card-body">
-            <p><strong>Order Number:</strong> {{ $production->order->order_number }}</p>
-            <p><strong>Production Line:</strong> {{ $production->line->name }}</p>
-            <p><strong>Production Date:</strong> {{ $production->production_date }}</p>
-            <p><strong>Planned Quantity:</strong> {{ $production->planned_qty }}</p>
-            <p><strong>Produced Quantity:</strong> {{ $production->produced_qty }}</p>
-            <p><strong>Defect Quantity:</strong> {{ $production->defect_qty }}</p>
-            <p><strong>Status:</strong> {{ $production->is_completed ? 'Completed' : 'Pending' }}</p>
-        </div>
-    </div>
-
-    <a href="{{ route('productions.index') }}" class="btn btn-secondary mt-3">Back to List</a>
-    <a href="{{ route('productions.edit', $production->id) }}" class="btn btn-warning mt-3">Edit</a>
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <td>{{ $production->id }}</td>
+        </tr>
+        <tr>
+            <th>Order No</th>
+            <td>{{ $production->order->order_no }}</td>
+        </tr>
+        <tr>
+            <th>Production Line</th>
+            <td>{{ $production->line->name }}</td>
+        </tr>
+        <tr>
+            <th>Production Date</th>
+            <td>{{ $production->production_date->format('d-m-Y') }}</td>
+        </tr>
+        <tr>
+            <th>Planned Quantity</th>
+            <td>{{ $production->planned_qty }}</td>
+        </tr>
+        <tr>
+            <th>Produced Quantity</th>
+            <td>{{ $production->produced_qty }}</td>
+        </tr>
+        <tr>
+            <th>Defective Quantity</th>
+            <td>{{ $production->defect_qty }}</td>
+        </tr>
+        <tr>
+            <th>Remarks</th>
+            <td>{{ $production->remarks }}</td>
+        </tr>
+        <tr>
+            <th>Completed</th>
+            <td>{{ $production->is_completed ? 'Yes' : 'No' }}</td>
+        </tr>
+    </table>
 </div>
 @endsection

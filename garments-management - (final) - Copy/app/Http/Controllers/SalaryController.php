@@ -5,82 +5,95 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Models\EmployeeSalary;
 use App\Models\SalarySetting;
+use App\Models\Attendance;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use PDF; // For PDF download
 
 class SalaryController extends Controller
 {
+    // 📌 Show all salary sheets
     public function index()
-{
-    $salaries = EmployeeSalary::with('employee')->latest()->paginate(20);
-    return view('salaries.index', compact('salaries'));
-}
-public function create()
-{
-    return view('salaries.create'); // dropdown: month + year
-}
-public function generateSalary(Request $request)
-{
-    $month = $request->month;
-    $year = $request->year;
-
-    $salary_setting = SalarySetting::first(); // Company rules
-
-    $employees = Employee::all();
-
-    foreach($employees as $emp)
     {
-        // এখানে attendance summary নাও
-        $attendance = $this->getAttendance($emp->id, $month, $year);
-
-        $basic = $emp->salary * $salary_setting->basic_percentage / 100;
-        $house_rent = $emp->salary * $salary_setting->house_rent_percentage / 100;
-        $medical = $salary_setting->medical_allowance;
-        $transport = $salary_setting->transport_allowance;
-        $overtime_amount = $attendance['overtime_hours'] * $salary_setting->overtime_rate;
-        $per_day_salary = $emp->salary / $attendance['total_days'];
-        $absent_deduction = $per_day_salary * $attendance['absent_days'];
-
-        $gross_salary = $basic + $house_rent + $medical + $transport + $overtime_amount;
-        $net_salary = $gross_salary - $absent_deduction;
-
-        EmployeeSalary::updateOrCreate(
-            [
-                'employee_id' => $emp->id,
-                'month' => $month,
-                'year' => $year
-            ],
-            [
-                'basic' => $basic,
-                'house_rent' => $house_rent,
-                'medical' => $medical,
-                'transport' => $transport,
-                'overtime_amount' => $overtime_amount,
-                'absent_deduction' => $absent_deduction,
-                'gross_salary' => $gross_salary,
-                'net_salary' => $net_salary,
-            ]
-        );
+        $salaries = EmployeeSalary::with('employee')->orderBy('year','desc')->orderBy('month','desc')->get();
+        return view('salaries.index', compact('salaries'));
     }
 
-    return redirect()->route('salaries.index')->with('success', 'Salary Sheet সফলভাবে তৈরি হয়েছে!');
-}
+    // 📌 Show form to select month/year
+    public function create()
+    {
+        return view('salaries.create');
+    }
 
-private function getAttendance($employee_id, $month, $year)
-{
-    // এখানে তোমার attendance table query করবে
-    // Example:
-    return [
-        'total_days' => 30,
-        'present_days' => 26,
-        'absent_days' => 4,
-        'overtime_hours' => 10
-    ];
-}
-public function show(EmployeeSalary $salary)
-{
-    return view('salaries.show', compact('salary'));
-}
+    // 📌 Generate salary sheet for selected month/year
+    public function generateSalary(Request $request)
+    {
+        $request->validate([
+            'month' => 'required',
+            'year' => 'required|integer',
+        ]);
 
+        $month = $request->month;
+        $year = $request->year;
 
+        $salarySettings = SalarySetting::first();
+        $employees = Employee::all();
+
+        foreach($employees as $employee) {
+            $attendances = Attendance::where('employee_id',$employee->id)
+                            ->whereMonth('date', date('m', strtotime("$month 1")))
+                            ->whereYear('date', $year)
+                            ->get();
+
+            $presentDays = $attendances->where('status','Present')->count();
+            $absentDays = $attendances->where('status','Absent')->count();
+            $overtimeHours = $attendances->sum('overtime_hours'); // Attendance table-এ OT column থাকা উচিত
+
+            $workingDays = $attendances->count() ?: 1; // avoid division by zero
+            $perDaySalary = $employee->salary / $workingDays;
+
+            // Salary calculation
+            $basic = $employee->salary * $salarySettings->basic_percentage / 100;
+            $houseRent = $employee->salary * $salarySettings->house_rent_percentage / 100;
+            $medical = $salarySettings->medical_allowance;
+            $transport = $salarySettings->transport_allowance;
+            $overtimeAmount = $overtimeHours * $salarySettings->overtime_rate;
+            $absentDeduction = $perDaySalary * $absentDays;
+
+            $gross = $basic + $houseRent + $medical + $transport + $overtimeAmount;
+            $net = $gross - $absentDeduction;
+
+            EmployeeSalary::updateOrCreate(
+                ['employee_id'=>$employee->id,'month'=>$month,'year'=>$year],
+                [
+                    'basic'=>$basic,
+                    'house_rent'=>$houseRent,
+                    'medical'=>$medical,
+                    'transport'=>$transport,
+                    'overtime_amount'=>$overtimeAmount,
+                    'absent_deduction'=>$absentDeduction,
+                    'gross_salary'=>$gross,
+                    'net_salary'=>$net,
+                ]
+            );
+        }
+
+        return redirect()->route('salaries.index')
+                         ->with('success','Salary sheet generated successfully!');
+    }
+
+    // 📌 Show single salary slip
+    public function show($id)
+    {
+        $salary = EmployeeSalary::with('employee')->findOrFail($id);
+        return view('salaries.show', compact('salary'));
+    }
+
+    // 📌 Download salary slip as PDF
+    // public function downloadPDF($id)
+    // {
+    //     $salary = EmployeeSalary::with('employee')->findOrFail($id);
+    //     $pdf = PDF::loadView('salaries.pdf', compact('salary'));
+    //     return $pdf->download('salary_'.$salary->employee->first_name.'_'.$salary->month.'.pdf');
+    // }
 }

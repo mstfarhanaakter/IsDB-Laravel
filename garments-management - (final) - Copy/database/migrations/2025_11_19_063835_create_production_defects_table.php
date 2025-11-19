@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('production_defects', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('production_id')->constrained('productions')->onDelete('cascade');
+            $table->foreignId('productions_line_id')->constrained('production_lines')->onDelete('cascade');
+            $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
             $table->string('defect_type');
             $table->integer('defect_qty')->default(0);
             $table->string('reported_by')->nullable();

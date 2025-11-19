@@ -33,6 +33,14 @@ class Order extends Model
         return $this->hasMany(OrderItem::class);
     }
 
+     /**
+     * Relationship: Order has many ProductionDefects
+     */
+    public function productionDefects()
+    {
+        return $this->hasMany(ProductionDefect::class);
+    }
+
     protected static function boot()
     {
         parent::boot();
