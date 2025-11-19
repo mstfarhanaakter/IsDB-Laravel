@@ -3,6 +3,7 @@
 use App\Http\Controllers\BuyerController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
@@ -48,6 +49,7 @@ Route::resource('deliveries', DeliveryController::class);
 Route::resource('order_items', OrderItemController::class);
 Route::resource('production-defects', ProductionDefectController::class);
 Route::resource('production-lines', ProductionLineController::class);
+Route::resource('employees', EmployeeController::class);
 
 
 
