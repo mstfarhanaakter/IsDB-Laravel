@@ -33,6 +33,9 @@ Route::get('/', function () {
 Route::get('/productions/work_progress', [ProductionController::class, 'workProgress'])
      ->name('productions.work_progress');
 
+     Route::get('/productions/completed', [ProductionController::class, 'workProgress'])
+     ->name('productions.completed');
+
 Route::get('/buyers/orders', [BuyerController::class, 'showOrders'])->name('buyers.orders');
 
 Route::resource('buyers', BuyerController::class);

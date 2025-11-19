@@ -120,4 +120,18 @@ class ProductionController extends Controller
 
         return view('productions.work_progress', compact('progressData'));
     }
+
+    /**
+ * Show only completed productions
+ */
+public function completed()
+{
+    // Only get productions where is_completed = true
+    $productions = Production::with(['order', 'line'])
+                     ->where('is_completed', 1)
+                     ->latest()
+                     ->paginate(15); // pagination optional
+
+    return view('productions.completed', compact('productions'));
+}
 }
