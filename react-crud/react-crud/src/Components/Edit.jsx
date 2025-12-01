@@ -42,7 +42,7 @@ const Edit = () => {
             await axios.put("http://127.0.0.1:8000/api/products/"+id, userField);
             navigate('/');  
         } catch (err) {
-            console.log("Something Wrong");
+            console.log("Something Wrong", err);
         }
     }
  
