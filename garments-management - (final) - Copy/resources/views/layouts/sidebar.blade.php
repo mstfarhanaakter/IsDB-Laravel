@@ -135,7 +135,7 @@
         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
       </a>
       <ul class="pc-submenu">
-        <li class="pc-item"><a class="pc-link" href="#!">Inspection</a></li>
+        <li class="pc-item"><a class="pc-link" href="#!nspection</a></li>
         <li class="pc-item"><a class="pc-link" href="#!">Defect Report</a></li>
       </ul>
     </li>

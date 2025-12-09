@@ -18,6 +18,7 @@ use App\Http\Controllers\ProductionLineController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PurchaseItemController;
 use App\Http\Controllers\PurchaseOrderController;
+use App\Http\Controllers\QC\InspectionController;
 use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\ShipmentController;
 use App\Http\Controllers\SupplierController;
@@ -63,7 +64,8 @@ Route::resource('employees', EmployeeController::class);
 Route::resource('attendances', AttendanceController::class);
 Route::resource('salaries', SalaryController::class);
 Route::resource('employee-salaries', EmployeeSalaryController::class);
-route::resource('leave-requests', LeaveRequestController::class);   
+Route::resource('leave-requests', LeaveRequestController::class);
+
 
 
 
