@@ -135,9 +135,10 @@
         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
       </a>
       <ul class="pc-submenu">
-        <li class="pc-item"><a class="pc-link" href="#!nspection</a></li>
-        <li class="pc-item"><a class="pc-link" href="#!">Defect Report</a></li>
+    <li class="pc-item"><a class="pc-link" href="#!">Inspection</a></li>
+    <li class="pc-item"><a class="pc-link" href="#!">Defect Report</a></li>
       </ul>
+
     </li>
 
     <!-- Reports -->
@@ -182,7 +183,7 @@
        
 
        
-        <li class="pc-item">
+        <!-- <li class="pc-item">
           <a href="../pages/login.html" class="pc-link">
             <span class="pc-micon"><i class="ti ti-lock"></i></span>
             <span class="pc-mtext">Login</span>
@@ -193,7 +194,7 @@
             <span class="pc-micon"><i class="ti ti-user-plus"></i></span>
             <span class="pc-mtext">Register</span>
           </a>
-        </li>
+        </li> -->
       </ul>
     </div>
   </div>
